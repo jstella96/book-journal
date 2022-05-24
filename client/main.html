@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style>
+/* body css*/
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  list-style: none;
+  display: inline-block;
+}
+
+html, body {
+  background-color: #F4F4F4;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  color: #8A8A8A
+}
+/* Header css*/
+#Header {
+  width: 80%;
+  margin: 0 10%;
+  padding-top: 20px;
+  position: relative;
+}
+#Header .title{
+  display: inline;
+  color: #8A8A8A;
+}
+.switch-button { 
+  right: 0px;
+  position: absolute;
+  display: inline-block;
+  width: 55px;
+  height: 30px;
+}
+.switch-button input{ 
+  opacity: 0;
+  width: 0;
+  height: 0;
+} .onoff-switch { 
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius:20px;
+  background-color: #ccc;
+  box-shadow: inset 1px 5px 1px #999;
+  -webkit-transition: .4s;
+  transition: .4s;
+} .onoff-switch:before { 
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 22px; left: 4px; bottom: 4px; background-color: #fff; -webkit-transition: .5s;
+  transition: .4s; border-radius:20px; 
+} .switch-button input:checked + .onoff-switch {
+  background-color: #FEED30;
+  box-shadow: inset 1px 5px 1px #E3AE56; 
+} .switch-button input:checked + .onoff-switch:before { 
+  -webkit-transform: translateX(26px); 
+  -ms-transform: translateX(26px);
+  transform: translateX(26px); 
+}
+/* leftSide - SearchInput css*/
+.grid-container {
+  display: grid;
+  grid-template-areas:
+  "SearchInput SearchFilter"
+  "BookJournal SearchFilter";
+  grid-template-columns: 1fr 350px;
+  grid-template-rows: 50px 1fr;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+#SearchInput {
+  margin-top: 10px;
+  grid-area: SearchInput;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 400px;
+  height: 40px;
+  left: 0%;
+  top: 0%;
+  background: #F4F4F4;
+  box-sizing: border-box;
+  box-shadow: inset -6px -6px 15px rgba(255, 255, 255, 0.78), inset 6px 6px 16px rgba(0, 0, 0, 0.15);
+  border-radius: 54px;
+}
+.SearchInput__Btn {
+  position: absolute; top: 50%;
+  transform: translate( 50% ,-50%);
+}
+.SearchInput__Btn img {
+  width: 70%;
+  height: auto;
+}
+.SearchInput__input {
+ 
+  top: 50%;
+  transform: translate( 0% ,-50%);
+  position: absolute;
+  left: 15%;
+  width: 75%;
+  border:none;
+  outline:none;
+  background: transparent;
+  font-size: 20px;
+  height: 80%;
+  color: #8A8A8A;
+}
+/* BookJournal css */
+#BookJournal {
+  margin-top: 20px;
+  grid-area: BookJournal;
+  position: relative;
+  height: 500px;
+  width: 100%;
+}
+.BookJournal__card {
+  margin-bottom: 15px;
+  box-sizing: border-box;
+  position: relative;
+  height: 150px;
+  width: 90%;
+  background: #F4F4F4;
+  box-shadow: -6px -6px 15px rgba(255, 255, 255, 0.78), 6px 6px 16px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+}
+.BookJournal__card .bookCover{
+  position: absolute;
+  top: 50%;
+  transform: translate( 0 ,-50%);
+  left: 3%;
+  width: 85px;
+  aspect-ratio: 1 / 1.5;
+}
+.BookJournal__card .date{
+  position: absolute;
+  top: 5px;
+  right: 15px;
+  color: #C4C4C4;
+}
+.BookJournal__card .content{
+  position: absolute;
+  top: 5px;
+  left: 130px;
+} 
+
+.BookJournal__card .content .title{
+  color: #8A8A8A;
+} 
+.BookJournal__card .content .review{
+  font-size: 16px;
+  color: #C4C4C4;
+}
+.BookJournal__card .content .tag{
+  font-size: 12px;
+  color: #8A8A8A;
+} 
+
+.BookJournal__card .like{
+  box-sizing: border-box;
+  position: absolute;
+  text-align: center;
+  right: 15px;
+  bottom: 15px;
+  width: 85px;
+  height: 85px;
+  background: #F4F4F4;
+  box-shadow: -6px -6px 15px rgba(255, 255, 255, 0.78), 6px 6px 16px rgba(0, 0, 0, 0.15);
+  border-radius: 66px;
+}
+.BookJournal__card .like{
+  display: block;
+
+}
+.BookJournal__card .like img{
+  margin-top: 20px;
+  width: 30%;
+  display: inline-block;
+}
+.BookJournal__card .like .count{
+  width: 30%;
+  display: inline-block;
+  color: #F87BCD
+}
+#SearchFilter {
+  grid-area: SearchFilter;
+  background-color: yellowgreen;
+  min-height:200px;
+
+  box-sizing: border-box;
+
+  position: relative;
+  /* Light Grey */
+
+  background: #F4F4F4;
+  box-shadow: -6px -6px 15px rgba(255, 255, 255, 0.78), 6px 6px 16px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+}
+#SearchFilter {
+
+  position: relative;
+  padding-left: 20px;
+}
+#SearchFilter .box{
+  cursor: pointer;
+  color: #8A8A8A
+}
+#SearchFilter .box:hover .name{
+  text-decoration: underline;
+
+}
+#SearchFilter .genre .title{
+
+}
+#SearchFilter .genre .box{
+  width: 150px;
+  height: 35px;
+  position: relative;
+  background: #F4F4F4;
+  box-shadow: -6px -6px 15px rgba(255, 255, 255, 0.78), 6px 6px 16px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+}
+#SearchFilter .genre .box span{
+  top: 50%;
+  transform: translate( 0 ,-50%);
+}
+#SearchFilter .genre .box .name{
+  position: absolute;
+  left: 5px;
+}
+#SearchFilter .genre .box .count{
+  position: absolute;
+  right: 5px;
+}
+
+#SearchFilter .year .title{
+
+}
+#SearchFilter .year .box{
+  width: 300px;
+  height: 35px;
+  position: relative;
+  background: #F4F4F4;
+  box-shadow: -6px -6px 15px rgba(255, 255, 255, 0.78), 6px 6px 16px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+}
+#SearchFilter .year .box span{
+  position: absolute;
+  top: 50%;
+  transform: translate( 0 ,-50%);
+}
+#SearchFilter .year .box .name{
+  left: 5px;
+}
+#SearchFilter .year .box .count{
+  right: 5px;
+}
+#SearchFilter .tag .box-tag {
+  background: #4FD0EC;
+  box-shadow: inset -2px -2px 4px rgba(255, 255, 255, 0.31), inset 2px 1px 16px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  color: #FFFFFF;
+  text-align: center;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 3px 7px ;
+}
+
+#SearchFilter .sort .box{
+  margin-bottom: 10px;
+  width: 300px;
+  height: 35px;
+  position: relative;
+  background: #F4F4F4;
+  box-shadow: -6px -6px 15px rgba(255, 255, 255, 0.78), 6px 6px 16px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+}
+#SearchFilter .sort .sort--selected{
+  background-color: #ddd;
+  box-shadow: inset 1px 3px 1px #aaa;
+ 
+}
+#SearchFilter .sort .box span{
+  position: absolute;
+  top: 50%;
+  transform: translate( 0 ,-50%);
+}
+#SearchFilter .sort .box .name{
+  left: 5px;
+}
+.bookSearch {
+  border: none ;
+  width: 55px;
+  height: 30px;
+  background-color:  #e8e7e0;
+  border-radius: 10px;
+  position: absolute;
+  right: 70px;
+  font-weight: 600;
+  color: #555;
+  cursor:pointer;
+}
+</style>
+</head>
+<body>
+  <div id="Header">
+    <h1 class="title">
+      BOOK JOURNAL
+    </h2>
+    <button class="bookSearch">추가</button>
+    <label class="switch-button"> 
+      <input type="checkbox"/> 
+      <span class="onoff-switch"></span> 
+    </label>
+  </div>
+  <div class="grid-container">
+    <div id="SearchInput">
+        <span class="SearchInput__Btn">
+          <img src="search.png" >
+        </span>
+        <form>
+          <input class="SearchInput__input">
+        </form>
+    </div>
+    <div id="BookJournal">
+      <div class="BookJournal__card">
+        <span class="date">2021-02-18</span>
+        <img class="bookCover" src="http://image.yes24.com/goods/74261416/XL"></img>
+        <div class="content">
+          <h3 class="title">우리가 빛의 속도로 갈 수 있다면</h5>
+          <p class="review">한줄 평이 있다면 작성하세요</p>
+          <div class="tag"><ul><li> #태그</li> <li> #태그</li></ul></div>
+        </div>
+        <div class="like">
+          <div>
+            <img src="like.png">
+          </div>
+          <span class="count">36</span>
+        </div>
+      </div>
+      <div class="BookJournal__card">
+        <span class="date">2021-02-18</span>
+        <img class="bookCover" src="http://image.yes24.com/goods/74261416/XL"></img>
+        <div class="content">
+          <h3 class="title">우리가 빛의 속도로 갈 수 있다면</h5>
+          <p class="review">한줄 평이 있다면 작성하세요</p>
+          <div class="tag"><ul><li> #태그</li> <li> #태그</li></ul></div>
+        </div>
+        <div class="like">
+          <div>
+            <img src="like.png">
+          </div>
+          <span class="count">36</span>
+        </div>
+      </div>
+      
+      <div class="BookJournal__card">
+        <span class="date">2021-02-18</span>
+        <img class="bookCover" src="http://image.yes24.com/goods/74261416/XL"></img>
+        <div class="content">
+          <h3 class="title">우리가 빛의 속도로 갈 수 있다면</h5>
+          <p class="review">한줄 평이 있다면 작성하세요</p>
+          <div class="tag"><ul><li> #태그</li> <li> #태그</li></ul></div>
+        </div>
+        <div class="like">
+          <div>
+            <img src="like.png">
+          </div>
+          <span class="count">36</span>
+        </div>
+      </div>
+    </div>
+    <div id="SearchFilter">
+     
+      <div class="genre">
+        <h3 class="title">장르</h3>
+        <ul>
+          <li class="box">
+            <span class="name">ALL</span>
+            <span class="count">32</span>
+          </li>
+          <li class="box">
+              <span class="name">철학</span>
+              <span class="count">32</span>
+          </li>
+          <li class="box">
+            <span class="name">인문학</span>
+            <span class="count">32</span>
+         </li>
+          <li class="box">
+            <span class="name">소설</span>
+            <span class="count">32</span>
+          </li>
+          <li class="box">
+            <span class="name">경제</span>
+            <span class="count">32</span>
+          </li>
+          <li class="box">
+            <span class="name">과학</span>
+            <span class="count">32</span>
+          </li>
+          <li class="box">
+            <span class="name">에세이</span>
+            <span class="count">32</span>
+          </li>
+        </ul>
+      </div>
+      <div class="year">
+        <h3 class="title">작성년도</h3>
+        <ul>
+          <li class="box">
+              <span class="name">2022</span>
+              <span class="count">32</span>
+          </li>
+          <li class="box">
+            <span class="name">2022</span>
+            <span class="count">32</span>
+          </li>
+        </ul>
+      </div> 
+      <div class="tag">
+        <h3 class="title">태그</h3>
+        <ul>
+          <li class="box-tag">
+              <span class="name">소감작성</span>
+          </li>
+          <li class="box-tag">
+              <span class="name">추천</span>
+         </li>
+         <li class="box-tag">
+          <span class="name">독서모임</span>
+        </li>
+        </ul>
+      </div>
+      <div class="sort">
+        <h3 class="title">정렬기준</h3>
+        <ul>
+          <li class="box sort--selected">
+              <span class="name">작성날짜</span>
+          </li>
+          <li class="box">
+              <span class="name">좋아요</span>
+         </li>
+        </ul>
+      </div>  
+    </div>
+  </div>
+  
+</body>
+</html>
