@@ -1,0 +1,205 @@
+/*공통*/
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  list-style: none;
+  display: inline-block;
+}
+
+html, body {
+  background-color: #F4F4F4;
+  width: 90%;
+  height: 100%;
+  margin: 0 5%;
+  color: #8A8A8A
+}
+/* header*/
+.header {
+  width: 80%;
+  margin: 0 10%;
+  padding-top: 20px;
+  position: relative;
+}
+/* switch-button 다크/라이트 모드 */
+.switch-button { 
+  right: 0px;
+  position: absolute;
+  display: inline-block;
+  width: 55px;
+  height: 30px;
+}
+.switch-button input{ 
+  opacity: 0;
+  width: 0;
+  height: 0;
+} .switch-button__onoff { 
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius:20px;
+  background-color: #ccc;
+  box-shadow: inset 1px 5px 1px #999;
+  -webkit-transition: .4s;
+  transition: .4s;
+} .switch-button__onoff:before { 
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 22px; left: 4px; bottom: 4px; background-color: #fff; -webkit-transition: .5s;
+  transition: .4s; border-radius:20px; 
+} .switch-button input:checked + .switch-button__onoff {
+  background-color: #FEED30;
+  box-shadow: inset 1px 5px 1px #E3AE56; 
+} .switch-button input:checked + .switch-button__onoff:before { 
+  -webkit-transform: translateX(26px); 
+  -ms-transform: translateX(26px);
+  transform: translateX(26px); 
+}
+
+
+
+/*main-page*/
+
+/* main header*/
+.main-header__title{
+  display: inline;
+  color: #8A8A8A;
+}
+.main-header__button{
+  border: none ;
+  width: 55px;
+  height: 30px;
+  background-color:  #e8e7e0;
+  border-radius: 10px;
+  position: absolute;
+  right: 70px;
+  font-weight: 600;
+  color: #555;
+  cursor:pointer;
+}
+/*search*/
+.search-input {
+  margin-top: 10px;
+  grid-area: search-input;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 400px;
+  height: 40px;
+  left: 0%;
+  top: 0%;
+  background: #F4F4F4;
+  box-sizing: border-box;
+  box-shadow: inset -6px -6px 15px rgba(255, 255, 255, 0.78), inset 6px 6px 16px rgba(0, 0, 0, 0.15);
+  border-radius: 54px;
+}
+.search__icon {
+  position: absolute; top: 50%;
+  transform: translate( 50% ,-50%);
+}
+.search__icon img {
+  width: 70%;
+  height: auto;
+}
+.search__input {
+  top: 50%;
+  transform: translate( 0% ,-50%);
+  position: absolute;
+  left: 15%;
+  width: 75%;
+  border:none;
+  outline:none;
+  background: transparent;
+  font-size: 20px;
+  height: 80%;
+  color: #8A8A8A;
+}
+
+
+<span class="book-journal-list__date">2021-02-18</span>
+    <img class="book-journal-list__img" src="http://image.yes24.com/goods/74261416/XL"></img>
+    <div class="book-journal-list__content">
+      <h3 class="book-journal-list__title">우리가 빛의 속도로 갈 수 있다면</h5>
+      <p class="book-journal-list__review">한줄 평이 있다면 작성하세요</p>
+      <div class="book-journal-list__tag"><ul><li> #태그</li> <li> #태그</li></ul></div>
+    </div>
+/* book-journal-list css */
+#book-journal-list {
+  margin-top: 20px;
+  grid-area: book-journal-list;
+  position: relative;
+  height: 500px;
+  width: 100%;
+}
+.book-journal-list__card {
+  margin-bottom: 15px;
+  box-sizing: border-box;
+  position: relative;
+  height: 150px;
+  width: 90%;
+  background: #F4F4F4;
+  box-shadow: -6px -6px 15px rgba(255, 255, 255, 0.78), 6px 6px 16px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+}
+.book-journal-list__date{
+  position: absolute;
+  top: 5px;
+  right: 15px;
+  color: #C4C4C4;
+}
+.book-journal-list__img{
+  position: absolute;
+  top: 50%;
+  transform: translate( 0 ,-50%);
+  left: 3%;
+  width: 85px;
+  aspect-ratio: 1 / 1.5;
+}
+.book-journal-list__content{
+  position: absolute;
+  top: 5px;
+  left: 130px;
+} 
+.book-journal-list__title{
+  color: #8A8A8A;
+} 
+.book-journal-list__review{
+  font-size: 16px;
+  color: #C4C4C4;
+}
+.book-journal-list__tag{
+  font-size: 12px;
+  color: #8A8A8A;
+} 
+/*클래스 분리 필요, 원형은 like-button 으로*/
+/*.like-button{}*/
+.book-journal-list__like{
+  box-sizing: border-box;
+  position: absolute;
+  text-align: center;
+  right: 15px;
+  bottom: 15px;
+  width: 85px;
+  height: 85px;
+  background: #F4F4F4;
+  box-shadow: -6px -6px 15px rgba(255, 255, 255, 0.78), 6px 6px 16px rgba(0, 0, 0, 0.15);
+  border-radius: 66px;
+  display: block;
+
+}
+.book-journal-list__like img{
+  margin-top: 20px;
+  width: 30%;
+  display: inline-block;
+}
+.book-journal-list__like span{
+  width: 30%;
+  display: inline-block;
+  color: #F87BCD
+}
