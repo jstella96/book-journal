@@ -1,5 +1,5 @@
 
-export default function MainHeader({$target, initialState={}, onEvent}){
+export default function YearFilter({$target, initialState={}, onEvent}){
   //[필수]
   this.$element = document.createElement('div'); 
   this.$element.className = "side-filter__year"
@@ -22,15 +22,15 @@ export default function MainHeader({$target, initialState={}, onEvent}){
   this.render = () => {
     this.$element.innerHTML = `
  
-    <h3 class="title">작성년도</h3>
+    <h3 class="side-filter__title">작성년도</h3>
     <ul>
-      <li class="box">
-          <span class="name">2022</span>
-          <span class="count">32</span>
+      <li class="side-filter__button">
+          <span class="side-filter__name">2022</span>
+          <span class="side-filter__count">32</span>
       </li>
-      <li class="box">
-        <span class="name">2022</span>
-        <span class="count">32</span>
+      <li class="side-filter__button">
+        <span class="side-filter__name">2022</span>
+        <span class="side-filter__count">32</span>
       </li>
     </ul>
 

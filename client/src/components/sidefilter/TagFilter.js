@@ -1,5 +1,5 @@
 
-export default function MainHeader({$target, initialState={}, onEvent}){
+export default function TagFilter({$target, initialState={}, onEvent}){
   //[필수]
   this.$element = document.createElement('div'); 
   this.$element.className = "side-filter__tag"
@@ -22,16 +22,16 @@ export default function MainHeader({$target, initialState={}, onEvent}){
   this.render = () => {
     this.$element.innerHTML = `
  
-    <h3 class="title">태그</h3>
+    <h3 class="side-filter__title">태그</h3>
     <ul>
-      <li class="box-tag">
-          <span class="name">소감작성</span>
+      <li class="tag">
+          <span class="tag__name">소감작성</span>
       </li>
-      <li class="box-tag">
-          <span class="name">추천</span>
+      <li class="tag">
+          <span class="tag__name">추천</span>
      </li>
-     <li class="box-tag">
-      <span class="name">독서모임</span>
+     <li class="tag">
+      <span class="tag__name">독서모임</span>
     </li>
     </ul>
 

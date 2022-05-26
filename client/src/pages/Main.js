@@ -1,7 +1,7 @@
-// import MainHeader from "../components/header/MainHeader.js"
-// import BookJournalList from "../components/bookJournalList/BookJournalList.js"
-// import Filter from "../components/filter/Filter.js"
-// import { getBookList } from "../lib/api/book.js";
+import SideFilter from "../components/sidefilter/SideFilter.js"
+import MainHeader  from "../components/header/MainHeader.js"
+import BookJournalList from "../components/bookJournalList/BookJournalList.js"
+import Search from "../components/search/Search.js"
 export default function Main({$target}){
 //[필수] 
 const $page = document.createElement('div');
@@ -14,24 +14,24 @@ this.setState = nextState => {
   this.render()
 }
 
-this.render = () => {
-  //2] 넣을 div 먼저 만들고 
-  this.$element.innerHTML = `<div class="grid-container"></div>`
-  
-  //3] 쿼리 셀렉터로 해당 태그에 생성 - 자식한텐 클래스가 없을수도 특별한 조건 없으면 div로 만들어라
-  selectedOptions = new SelectedOptions({ 
-    $target: $productDetail.querySelector('.grid-container'), //위에 집중
-    initialState: {
-      product: this.state.product,
-      selectedOptions: this.state.selectedOptions
-    }    
-  })
-
-}
+let mainHeader = null
+let sideFilter = null
+let bookJournalList = null
+let search = null
 
 this.render = () => {
+  $page.innerHTML = ''
+  mainHeader =  new MainHeader({$target:$page})
+  $page.innerHTML += `<div class="grid-container"></div>`
+ 
+  search = new Search({$target:$page.querySelector('.grid-container'),initialState: {} });
+  bookJournalList = new BookJournalList({$target:$page.querySelector('.grid-container'),initialState: {} });
+  new BookJournalList({$target:$page.querySelector('.grid-container'),initialState: {} });
+  sideFilter = new SideFilter({$target:$page.querySelector('.grid-container'),initialState: {} })
   $target.appendChild($page)
+
 }
 
 this.render();
+
 }

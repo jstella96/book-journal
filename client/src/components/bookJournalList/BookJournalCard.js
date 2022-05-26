@@ -1,5 +1,6 @@
 
-export default function MyComponentBase({$target, initialState={}, onEvent}){
+import LikeButton from "./LikeButton.js";
+export default function BookJournalCard({$target, initialState={}, onEvent}){
   //[필수]
   this.$element = document.createElement('div'); 
   this.$element.className = "book-journal-list__card"
@@ -8,6 +9,7 @@ export default function MyComponentBase({$target, initialState={}, onEvent}){
   this.state = {
 
   }
+  let likeButton = null
   //this.state = initialState
   $target.appendChild(this.$element)
 
@@ -28,9 +30,8 @@ export default function MyComponentBase({$target, initialState={}, onEvent}){
       <p class="book-journal-list__review">한줄 평이 있다면 작성하세요</p>
       <div class="book-journal-list__tag"><ul><li> #태그</li> <li> #태그</li></ul></div>
     </div>
-    
     `
-    //여기서 하트버튼 렌더
+    likeButton = new LikeButton({$target : this.$element})
   }
   
   this.render()

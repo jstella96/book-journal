@@ -1,5 +1,6 @@
 
-export default function MyComponentBase({$target, initialState={}, onEvent}){
+
+export default function LikeButton({$target, initialState={}, onEvent}){
   //[필수]
   this.$element = document.createElement('div'); 
   this.$element.className = "book-journal-list__like"
@@ -22,7 +23,7 @@ export default function MyComponentBase({$target, initialState={}, onEvent}){
   this.render = () => {
     this.$element.innerHTML = `
       <div>
-        <img src="like.png">
+        <img src="src/assets/images/like.png">
       </div>
       <span>36</span>
     `

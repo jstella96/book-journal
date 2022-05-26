@@ -1,5 +1,5 @@
 
-export default function MainHeader({$target, initialState={}, onEvent}){
+export default function Sort({$target, initialState={}, onEvent}){
   //[필수]
   this.$element = document.createElement('div'); 
   this.$element.className = "side-filter__sort"
@@ -22,13 +22,13 @@ export default function MainHeader({$target, initialState={}, onEvent}){
   this.render = () => {
     this.$element.innerHTML = `
    
-    <h3 class="title">정렬기준</h3>
+    <h3 class="side-filter__title">정렬기준</h3>
     <ul>
-      <li class="box sort--selected">
-          <span class="name">작성날짜</span>
+      <li class="side-filter__button side-filter__button--selected">
+          <span class="side-filter__name">작성날짜</span>
       </li>
-      <li class="box">
-          <span class="name">좋아요</span>
+      <li class="side-filter__button">
+          <span class="side-filter__name">좋아요</span>
      </li>
     </ul>
  

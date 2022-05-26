@@ -1,5 +1,5 @@
 
-export default function MainHeader({$target, initialState={}, onEvent}){
+export default function Search({$target, initialState={}, onEvent}){
   //[필수]
   this.$element = document.createElement('div'); 
   this.$element.className = "search"
@@ -22,7 +22,7 @@ export default function MainHeader({$target, initialState={}, onEvent}){
   this.render = () => {
     this.$element.innerHTML = `
         <span class="search__icon">
-          <img src="search.png" >
+          <img src="src/assets/images/search.png" >
         </span>
         <form>
           <input class="search__input">
