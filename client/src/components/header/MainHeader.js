@@ -24,7 +24,7 @@ export default function MainHeader({$target, initialState={}, onEvent}){
       <h1 class="main-header__title">
         BOOK JOURNAL
       </h2>
-      <button class="main-header__button">추가</button>
+      <button class="header__button">추가</button>
       <label class="switch-button"> 
         <input type="checkbox"/> 
         <span class="switch-button__onoff"></span> 
