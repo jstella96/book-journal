@@ -25,10 +25,12 @@ const BookJournalSchema = new mongoose.Schema(
     review: {
       type: String 
     },
-    like:{ //like 누른 이름 저장, like 규칙 간단한걸로
-      type:[String]
-    }
-    ,
+    likeCount : {
+      type: Number
+    },
+    like_users : { 
+      type: Object //{USER_ID1 : true, USER_ID2 : true } 
+    },
     quotes: [QuotesShema]
   },
   { timestamps: true }, 
