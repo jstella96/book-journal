@@ -25,6 +25,10 @@ const BookJournalSchema = new mongoose.Schema(
     review: {
       type: String 
     },
+    like:{ //like 누른 이름 저장, like 규칙 간단한걸로
+      type:[String]
+    }
+    ,
     quotes: [QuotesShema]
   },
   { timestamps: true }, 

@@ -1,13 +1,17 @@
 import mongoose from "mongoose";
-const Tag = new mongoose.Schema({ color: String, name: String})
 const UserSchema = new mongoose.Schema(
   {
     name: {
       type: String,
       index: true,
     },
+    genre: {
+      type: [String],
+      default:[]
+    },
     tag: {
-      type: [Tag]
+      type: [String],
+      default:[]
     },
   },
   { timestamps: true },

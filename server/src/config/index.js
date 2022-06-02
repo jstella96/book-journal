@@ -11,7 +11,7 @@ export default  {
   api: {
     prefix: '/api'
   },
-  port: process.env.PORT,
+  port: process.env.PORT || 3000,
    /* MongoDB URL */
   mongoURL: process.env.MONGODB_URI,
 }

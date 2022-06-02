@@ -6,5 +6,4 @@ export default (app) => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-    console.log("연결")
 }
