@@ -18,8 +18,8 @@ html, body {
 }
 /* header*/
 .header {
-  width: 80%;
-  margin: 0 10%;
+  width: 100%;
+  margin: 0 0;
   padding-top: 20px;
   position: relative;
 }
@@ -91,7 +91,7 @@ html, body {
   "book-journal-list side-filter";
   grid-template-columns: 1fr 350px;
   grid-template-rows: 50px 1fr;
-  max-width: 1200px;
+  /*max-width: 1600px;*/
   margin: 0 auto;
 }
 /*search*/
