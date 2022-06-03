@@ -1,13 +1,15 @@
 import mongoose from "mongoose";
-const QuotesShema = new mongoose.Schema({ code:String, language: String });
+const QuoteShema = new mongoose.Schema({  content: String,  page: String  });
+
 const BookJournalSchema = new mongoose.Schema(
   {
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
+    userId: {
+      type: String,
       ref: 'User',
-      index: true
+      index: true,
+      required: true,
     },
-    imgPath: {
+    imagePath: {
       type: String
     },
     title: {
@@ -28,10 +30,14 @@ const BookJournalSchema = new mongoose.Schema(
     likeCount : {
       type: Number
     },
-    like_users : { 
-      type: Object //{USER_ID1 : true, USER_ID2 : true } 
+    likeUsers : { 
+      type: Object, //{USER_ID1 : true, USER_ID2 : true }
+      default: {}
     },
-    quotes: [QuotesShema]
+    quotes: {
+      type: [QuoteShema],
+      default: []
+    }
   },
   { timestamps: true }, 
 );
