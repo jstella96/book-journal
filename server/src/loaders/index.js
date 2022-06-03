@@ -4,5 +4,5 @@ import logger from './logger.js';
 export default (app) => {
   expressLoader(app);
   mongooseLoader();
-  logger.info("ddd")
+  logger.info("loader")
 };
