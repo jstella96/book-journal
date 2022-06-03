@@ -5,7 +5,7 @@ export class UserService {
   }
 
   async findUser(userId) {
-    const user = await this.userModel.find({_id:userId});
+    const user = await this.userModel.findOne({userId:userId}).lean();
     return user;
   }
   async create(userDTO) {
@@ -13,15 +13,23 @@ export class UserService {
     return user;
   }
   async deleteUser(userId) {
-    const user = await this.userModel.delete({_id:userId});
+    const user = await this.userModel.deleteOne({userId:userId});
     return user;
   }
   async setTag(userId,tagDTO) {
-    const user = await this.userModel.update({id:userId},{ '$push': { tag : tagDTO} });
+    const user = await this.userModel.updateOne({userId:userId},{ '$push': { tag : tagDTO} });
     return user;
   }
   async deleteTag(userId, tagId) {
-    const user = await this.userModel.update({_id:userId},{ '$pull': { tag : { _id: tagId }} });
+    const user = await this.userModel.updateOne({userId:userId},{ '$pull': { tag : { _id: tagId }} });
+    return user;
+  }
+  async setGenre(userId,genreDTO) {
+    const user = await this.userModel.updateOne({userId:userId},{ '$push': { genre :genreDTO} });
+    return user;
+  }
+  async deleteGenre(userId, genreId) {
+    const user = await this.userModel.updateOne({userId:userId},{ '$pull': { genre : { _id: genreId }} });
     return user;
   }
 }

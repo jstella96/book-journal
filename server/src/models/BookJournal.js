@@ -1,13 +1,15 @@
 import mongoose from "mongoose";
-const QuotesShema = new mongoose.Schema({ code:String, language: String });
+const QuoteShema = new mongoose.Schema({  content: String,  page: String  });
+
 const BookJournalSchema = new mongoose.Schema(
   {
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
+    userId: {
+      type: String,
       ref: 'User',
-      index: true
+      index: true,
+      required: true,
     },
-    imgPath: {
+    imagePath: {
       type: String
     },
     title: {
@@ -25,11 +27,17 @@ const BookJournalSchema = new mongoose.Schema(
     review: {
       type: String 
     },
-    like:{ //like 누른 이름 저장, like 규칙 간단한걸로
-      type:[String]
+    likeCount : {
+      type: Number
+    },
+    likeUsers : { 
+      type: Object, //{USER_ID1 : true, USER_ID2 : true }
+      default: {}
+    },
+    quotes: {
+      type: [QuoteShema],
+      default: []
     }
-    ,
-    quotes: [QuotesShema]
   },
   { timestamps: true }, 
 );

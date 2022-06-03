@@ -1,16 +1,27 @@
 import mongoose from "mongoose";
+const TagShema = new mongoose.Schema({ name : String });
+
+const GenreShema = new mongoose.Schema({ name : String });
+
 const UserSchema = new mongoose.Schema(
   {
-    name: {
+    userId: {
       type: String,
       index: true,
+      required:true,
+      unique: true
+    },
+    name: {
+      type: String,
+      required:true,
+      default:''
     },
     genre: {
-      type: [String],
+      type: [GenreShema],
       default:[]
     },
     tag: {
-      type: [String],
+      type: [TagShema],
       default:[]
     },
   },
