@@ -2,6 +2,8 @@ import BookJournalHearder from "../components/header/BookJournalHeader.js";
 import BookDetail from "../components/bookJournal/BookDetail.js";
 import BookReview from "../components/bookJournal/BookReview.js";
 import BookQuote from "../components/bookJournal/BookQuote.js";
+import {getUser, deleteGenre, deleteTag, putGenre, putTag} from "../lib/api/user.js"
+import {getBookJournals, deleteBookJournal, getBookJournal, putBookJournal, updateBookJournal} from "../lib/api/bookjournal.js"
 
 export default function BookJournal({$target}){
   //[필수] 
