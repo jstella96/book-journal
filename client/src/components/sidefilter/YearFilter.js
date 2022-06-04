@@ -6,7 +6,8 @@ export default function YearFilter({$target, initialState={}, onEvent}){
   
   /* 이름 종속되게 짓지 말기 */
   this.state = {
-
+    years: initialState.years ? initialState.years : [],
+    selectedIndex: 0
   }
   //this.state = initialState
   $target.appendChild(this.$element)
@@ -20,22 +21,29 @@ export default function YearFilter({$target, initialState={}, onEvent}){
   }
   
   this.render = () => {
-    this.$element.innerHTML = `
- 
-    <h3 class="side-filter__title">작성년도</h3>
-    <ul>
-      <li class="side-filter__button">
-          <span class="side-filter__name">2022</span>
-          <span class="side-filter__count">32</span>
-      </li>
-      <li class="side-filter__button">
-        <span class="side-filter__name">2022</span>
-        <span class="side-filter__count">32</span>
-      </li>
-    </ul>
 
+    const {years,  selectedIndex} = this.state
+    const yearTemplate = years.map( (year,index) => 
+        `
+        <li class="side-filter__button ${index ==  selectedIndex ? 'side-filter__button--selected' : ''}">
+          <span class="side-filter__name">${year.name}</span>
+          <span class="side-filter__count">${year.count}</span>
+        </li>
+        `
+    ).join('')
+    this.$element.innerHTML = `
+      <h3 class="side-filter__title">작성년도</h3>
+      <ul>${yearTemplate}</ul>
     `
   }
+
+  this.$element.addEventListener('click',(e)=>{
+    const $li = e.target.closest('li')
+      if ($li) {
+        const {genres, selectedIndex} = this.state
+        onClick(genres[selectedIndex]);
+      }
+  })
   
   this.render()
 }
