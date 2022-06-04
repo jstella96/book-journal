@@ -21,7 +21,7 @@ export default function GenreFilter({ $target, initialState = {}, onClick}){
   
   this.render = () => {
     const {genres,  selectedIndex} = this.state
-    console.log(genres)
+    console.log(this.state)
     const genreTemplate = genres.map( (genre,index) => 
         `
         <li class="side-filter__button ${index ==  selectedIndex ? 'side-filter__button--selected' : ''}">
@@ -30,7 +30,6 @@ export default function GenreFilter({ $target, initialState = {}, onClick}){
         </li>
         `
     ).join('')
-    console.log(genreTemplate)
     this.$element.innerHTML = `
       <h3 class="side-filter__title">장르</h3>
       <ul>${genreTemplate}</ul>

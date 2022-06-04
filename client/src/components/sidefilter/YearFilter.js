@@ -22,7 +22,8 @@ export default function YearFilter({$target, initialState={}, onEvent}){
   
   this.render = () => {
 
-    const {years,  selectedIndex} = this.state
+    let {years,  selectedIndex} = this.state
+
     const yearTemplate = years.map( (year,index) => 
         `
         <li class="side-filter__button ${index ==  selectedIndex ? 'side-filter__button--selected' : ''}">
