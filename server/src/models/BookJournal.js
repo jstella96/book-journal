@@ -37,8 +37,15 @@ const BookJournalSchema = new mongoose.Schema(
     quotes: {
       type: [QuoteShema],
       default: []
+    },
+    tags: {
+      type: [ mongoose.Schema.Types.ObjectId ],
+      default: []
+    },
+    genre: {
+      type: mongoose.Schema.Types.ObjectId 
     }
-  },
+  },  
   { timestamps: true }, 
 );
 const BookJournalModel = mongoose.model("BookJournal", BookJournalSchema);
