@@ -1,6 +1,6 @@
 
 
-export default function LikeButton({$target, initialState={}, onEvent}){
+export default function LikeButton({$target, initialState={} }){
   //[필수]
   this.$element = document.createElement('div'); 
   this.$element.className = "book-journal-list__like"
@@ -10,7 +10,7 @@ export default function LikeButton({$target, initialState={}, onEvent}){
 
   }
   //this.state = initialState
-  $target.appendChild(this.$element)
+
 
   this.setState = (nextState) => {
     this.state = {
@@ -27,7 +27,8 @@ export default function LikeButton({$target, initialState={}, onEvent}){
       </div>
       <span>36</span>
     `
+    $target.appendChild(this.$element)
   }
-  
+
   this.render()
 }

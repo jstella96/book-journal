@@ -1,21 +1,17 @@
 
-export default function Search({$target, initialState={}, onEvent}){
+export default function Search({$target, initialState={}, onChange}){
   //[필수]
   this.$element = document.createElement('div'); 
   this.$element.className = "search"
   
   /* 이름 종속되게 짓지 말기 */
-  this.state = {
-
-  }
-  //this.state = initialState
+  this.state = initialState
   $target.appendChild(this.$element)
+  //this.$element.setAttribute('autofocus','autofocus');
+
 
   this.setState = (nextState) => {
-    this.state = {
-      ...this.state,
-      ...nextState
-    }
+    this.state = nextState
     this.render()
   }
   
@@ -25,10 +21,25 @@ export default function Search({$target, initialState={}, onEvent}){
           <img src="src/assets/images/search.png" >
         </span>
         <form>
-          <input class="search__input">
+          <input class="search__input" type="text" value="${this.state}">
         </form>
     `
   }
-  
+  let debounce = null;
+
+  this.$element.addEventListener('keyup', (e) => {
+    const actionIgnoreKeys = ['Enter', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight']
+    if(!actionIgnoreKeys.includes(e.key)){
+      if(!onChange) return;
+      clearTimeout(debounce);
+      debounce = setTimeout(() => {
+        onChange(e.target.value)
+      }, 50);
+    }
+  })
+
+  this.$element.addEventListener('submit',(e)=>{
+    e.preventDefault();
+  })
   this.render()
 }
