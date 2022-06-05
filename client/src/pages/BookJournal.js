@@ -2,6 +2,7 @@ import BookJournalHearder from "../components/header/BookJournalHeader.js";
 import BookDetail from "../components/bookJournal/BookDetail.js";
 import BookReview from "../components/bookJournal/BookReview.js";
 import BookQuote from "../components/bookJournal/BookQuote.js";
+import BookTag from "../components/bookJournal/BookTag.js";
 import {getUser, deleteGenre, deleteTag, putGenre, putTag} from "../lib/api/user.js"
 import {getBookJournals, deleteBookJournal, getBookJournal, putBookJournal, updateBookJournal} from "../lib/api/bookjournal.js"
 
@@ -20,6 +21,7 @@ export default function BookJournal({$target}){
 
   new BookJournalHearder({$target})
   new BookDetail({$target})
+  new BookTag({$target})
   new BookReview({$target})
   new BookQuote({$target})
 

@@ -16,6 +16,22 @@ html, body {
   margin: 0 5%;
   color: #8A8A8A
 }
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+[contenteditable="true"]:focus {
+  outline: none;
+}
+.contenteditable:focus {
+  outline: none;
+
+}
+.inline{
+  display: inline;
+}
 /* header*/
 .header {
   width: 100%;
@@ -171,7 +187,10 @@ html, body {
 } 
 .book-journal-list__title{
   color: #8A8A8A;
-} 
+}
+.book-journal-list__title--matched{
+  color: #555;
+}
 .book-journal-list__review{
   font-size: 16px;
   color: #C4C4C4;
@@ -279,6 +298,9 @@ html, body {
   font-size: 14px;
   padding: 3px 7px ;
 }
+.tag--selected{
+  background: #3fa6bd;
+}
 
 
 
@@ -301,7 +323,6 @@ html, body {
   position: absolute;
   top: 50%;
   transform: translate( 0 ,-50%);
-  left: 3%;
   width: 85px;
   aspect-ratio: 1 / 1.5;
 }
@@ -310,7 +331,7 @@ html, body {
 } 
 .book-detail__content{
   position: absolute;
-  left: 140px;
+  left: 110px;
 } 
 .book-detail__text{
   font-size: 14px;
@@ -338,6 +359,7 @@ html, body {
 .book-review__content {
   width: 100%;
   min-height: 100px;
+  padding: 10px 20px;
 }
 /*Quote*/
 .book-quote  {
