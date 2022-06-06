@@ -2,7 +2,7 @@ import SideFilter from "../components/sidefilter/SideFilter.js"
 import MainHeader  from "../components/header/MainHeader.js"
 import BookJournalList from "../components/bookJournalList/BookJournalList.js"
 import Search from "../components/search/Search.js"
-
+import {getItem,setItem} from "../utils/localStorage.js"
 import {getUser, deleteGenre, deleteTag, putGenre, putTag} from "../lib/api/user.js"
 import {getBookJournals, deleteBookJournal, getBookJournal, putBookJournal, updateBookJournal} from "../lib/api/bookjournal.js"
 
@@ -35,10 +35,12 @@ export default function Main({$target}){
 
   this.init = async () => {
     const user = await getUser("jstella");
-    console.log(user)
     const bookJournals = await getBookJournals("jstella");
+    setItem("user",user)
     const years = this.groupByYear(bookJournals);
     const genres = this.countByGenre(user.genres,bookJournals);
+    setItem("genres",  genres)
+    setItem("bookJournals",  bookJournals)
 
     this.setState({genres:genres,tags:user.tags,years:years,bookJournals:bookJournals})
   }
