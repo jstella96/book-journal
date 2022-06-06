@@ -22,7 +22,7 @@ export default function BookReview({$target, initialState={}, onEvent}){
   this.render = () => {
     this.$element.innerHTML = `
       <h3>소감</h3>
-      <div class="long-card book-review__content contenteditable "  contenteditable > </div>
+      <div class="long-card book-review__content" contenteditable="true" > </div>
     `
   }
   

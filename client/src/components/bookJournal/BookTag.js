@@ -1,12 +1,12 @@
 
-export default function BookTag({$target, initialState={}, onClick}){
+export default function BookTag({$target, initialState={}, onClick,onChange}){
     //[필수]
     this.$element = document.createElement('div'); 
     this.$element.className = ""
     
     /* 이름 종속되게 짓지 말기 */
     this.state = {
-      tags: initialState.tags ? initialState.tags : ["좋아요"],
+      tags: initialState.tags ? initialState.tags : [{name:"좋아용"}],
       selectedIndex: []
     }
     //this.state = initialState
@@ -40,7 +40,7 @@ export default function BookTag({$target, initialState={}, onClick}){
       const $li = e.target.closest('li')
         if ($li) {
           const {genres, selectedIndex} = this.state
-          onClick(genres[selectedIndex]);
+          onClick(selectedIndex);
         }
     })
     this.render()

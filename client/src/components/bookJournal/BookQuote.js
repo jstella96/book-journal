@@ -1,12 +1,12 @@
 
-export default function BookQuote({$target, initialState={}, onEvent}){
+export default function BookQuote({$target, initialState={}, onChange}){
   //[필수]
   this.$element = document.createElement('div'); 
   this.$element.className = "book-quote"
   
   /* 이름 종속되게 짓지 말기 */
   this.state = {
-    quotes : [{content:"인용문1",page:"37 쪽"},{content:"인용문1"}],
+    quotes : [{content:""}],
   }
   //this.state = initialState
   $target.appendChild(this.$element)
@@ -47,7 +47,7 @@ export default function BookQuote({$target, initialState={}, onEvent}){
     `
   }
   
-  /* 클로짓으로 처리로 바꾸자.. */
+  
   this.$element.addEventListener('click',(e)=>{
     const $button = e.target.closest('.book-quote__button')
     if($button){
@@ -69,6 +69,7 @@ export default function BookQuote({$target, initialState={}, onEvent}){
       const {idx} = e.target.dataset //위에서 저장
       this.state.quotes[idx].content=e.target.innerHTML
     }
+    onChange({quotes: this.state.quotes})
   })
   
   this.render()
