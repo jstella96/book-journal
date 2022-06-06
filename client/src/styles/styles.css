@@ -25,10 +25,11 @@ button:focus {
 [contenteditable="true"]:focus {
   outline: none;
 }
-.contenteditable:focus {
-  outline: none;
-
+[contenteditable=true]:empty:before{
+  content: attr(placeholder);
+  display: block; /* For Firefox */
 }
+
 .inline{
   display: inline;
 }
@@ -366,21 +367,29 @@ button:focus {
   width: 100%;
   padding: 10px;
   margin-bottom: 20px;
+
 }
 
-.book-quote__content {
+.book-quote__scrap {
   width: 100%;
   min-height: 500px;
   padding-top: 20px;
   position: relative;
 }
-.book-quote__list {
-  min-height: 150px;
+.book-quote__content {
+
   width: 80%;
-  background-color: #efe5e8;
   border-radius: 10px;
   margin-left: 10%;
   margin-bottom: 50px;
+}
+.book-quote__text {
+  min-height: 150px;
+  background-color: #efe5e8;
+  padding: 10px 20px ;
+}
+.book-quote__page {
+  float: right;
 }
 .book-quote__button {
   right: 30px;
@@ -391,6 +400,7 @@ button:focus {
   box-shadow: -6px -6px 15px rgba(255, 255, 255, 0.78), 6px 6px 16px rgba(0, 0, 0, 0.15);
   border-radius: 66px;
   position: absolute;
+  border: none;
 }
 .book-quote__button img{
   width: 50%;
