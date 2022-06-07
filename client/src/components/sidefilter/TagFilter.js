@@ -7,7 +7,7 @@ export default function TagFilter({$target, initialState={}, onClick}){
 
   this.state = {
     tags: initialState.tags ? initialState.tags : [],
-    selectedIndex: []
+    selectedTags: []
   }
 
   $target.appendChild(this.$element)
@@ -22,10 +22,10 @@ export default function TagFilter({$target, initialState={}, onClick}){
   
   this.render = () => {
   
-    const {tags,  selectedIndex} = this.state
-    const tagTemplate = tags.map( (tag,index) => 
+    const {tags,  selectedTags} = this.state
+    const tagTemplate = tags.map( tag => 
         `
-        <li class="side-filter__button ${selectedIndex.includes(index) ? 'side-filter__button--selected' : ''}">
+        <li data-id="${tag._id}" class="side-filter__button ${selectedTags.includes(tag._id) ? 'side-filter__button--selected' : ''}">
           <span>#${tag.name}</span>
         </li>
         `
@@ -39,8 +39,15 @@ export default function TagFilter({$target, initialState={}, onClick}){
   this.$element.addEventListener('click',(e)=>{
     const $li = e.target.closest('li')
       if ($li) {
-        const {genres, selectedIndex} = this.state
-        onClick(genres[selectedIndex]);
+        const {id} = $li.dataset
+        let {selectedTags} = this.state
+        if(selectedTags.includes(id)){
+          selectedTags = selectedTags.filter(  tag => tag !== id )
+        }else{
+          selectedTags.push(id)
+        }
+        this.setState({selectedTags : selectedTags})
+        onClick({tags:selectedTags});
       }
   })
   this.render()
