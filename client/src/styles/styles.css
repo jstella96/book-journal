@@ -75,8 +75,8 @@ button:focus {
   right: 0;
   bottom: 0;
   border-radius:20px;
-  background-color: #ccc;
-  box-shadow: inset 1px 5px 1px #999;
+  background-color: #FEED30;
+  box-shadow: inset 1px 5px 1px #E3AE56; 
   -webkit-transition: .4s;
   transition: .4s;
 } .switch-button__onoff:before { 
@@ -86,8 +86,8 @@ button:focus {
   width: 22px; left: 4px; bottom: 4px; background-color: #fff; -webkit-transition: .5s;
   transition: .4s; border-radius:20px; 
 } .switch-button input:checked + .switch-button__onoff {
-  background-color: #FEED30;
-  box-shadow: inset 1px 5px 1px #E3AE56; 
+  background-color: #ccc;
+  box-shadow: inset 1px 5px 1px #999;
 } .switch-button input:checked + .switch-button__onoff:before { 
   -webkit-transform: translateX(26px); 
   -ms-transform: translateX(26px);
