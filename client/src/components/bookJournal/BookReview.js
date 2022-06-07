@@ -5,7 +5,7 @@ export default function BookReview({$target, initialState={}, onChange}){
   this.$element.className = "book-review"
   
   this.state = {
-    review:""
+    review: ""
   }
 
   $target.appendChild(this.$element)
@@ -22,7 +22,7 @@ export default function BookReview({$target, initialState={}, onChange}){
     const {review} = this.state
     this.$element.innerHTML = `
       <h3>소감</h3>
-      <div class="long-card book-review__content" spellcheck="false" contenteditable="true" >${review}</div>
+      <div class="long-card book-review__content" spellcheck="false" contenteditable="true" >${review ? review : ''}</div>
     `
   }
   this.$element.addEventListener('keyup', e => {

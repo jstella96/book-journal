@@ -6,8 +6,8 @@ export default function BookTag({$target, initialState={}, onChange}){
     
   
     this.state = {
-      tags: initialState.tags ? initialState.tags : [{name:"좋아용"}],
-      selectedId: []
+      tags: initialState.tags ? initialState.tags : [],
+      selectedIds: initialState.selectedIds ? initialState.selectedIds:[]
     }
   
     $target.appendChild(this.$element)
@@ -22,10 +22,10 @@ export default function BookTag({$target, initialState={}, onChange}){
     
     this.render = () => {
     
-      const {tags,  selectedId} = this.state
+      const {tags,  selectedIds} = this.state
       const tagTemplate = tags.map( (tag,index) => 
           `
-          <li data-idx="${index}" class="tag ${selectedId.includes(tag._id) ? 'tag--selected' : ''}">
+          <li data-index="${index}" class="tag ${selectedIds.includes(tag._id) ? 'tag--selected' : ''}">
             <span class="tag__name">${tag.name}</span>
           </li>
           `
@@ -39,19 +39,20 @@ export default function BookTag({$target, initialState={}, onChange}){
     this.$element.addEventListener('click',(e)=>{
       const $li = e.target.closest('.tag')
         if ($li) {
-          let {idx} =  $li.dataset 
-          idx = parseInt(idx)
-          let {selectedId, tags} = this.state
-          const id = tags[idx]._id
-          if(selectedId.includes(id)){
-            selectedId = selectedId.filter(function(item) {
+          let {index} =  $li.dataset 
+          index = parseInt(index)
+          let {selectedIds, tags} = this.state
+          const id = tags[index]._id
+          if(selectedIds.includes(id)){
+            selectedIds = selectedIds.filter(function(item) {
               return item !== id
             })
           }else{
-            selectedId.push(id)
+            selectedIds.push(id)
           }
-          this.setState({selectedId : selectedId})
-          onChange({tags:selectedId});
+          this.setState({selectedIds : selectedIds})
+          onChange({tags:selectedIds});
+          console.log(selectedIds)
         }
     })
     this.render()

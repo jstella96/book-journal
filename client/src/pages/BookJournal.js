@@ -27,7 +27,7 @@ export default function BookJournal({$target}){
       ...nextState
     }
     bookDetail.setState({genres :this.state.genres, form:this.state.form})
-    bookTag.setState({tags :this.state.tags})
+    bookTag.setState({tags :this.state.tags, selectedIds: this.state.form.tags})
     bookReview.setState({review :this.state.form.review})
     bookQuote.setState({tags :this.state.form.quotes})
     this.render()

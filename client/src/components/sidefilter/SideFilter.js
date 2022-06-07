@@ -11,7 +11,7 @@ export default function SideFilter({$target, initialState={}, onClick}){
     genres : initialState.genres? initialState.genres : [] ,
     years:  initialState.years?initialState.years: [],
     tags: initialState.tags?initialState.tags: [],
-    sort: [{name:"작성날짜"},{name:"좋아요"}]
+    sort: [{name:"작성날짜",value:"date"},{name:"좋아요",value:"likeCount"}]
   }
   
   const genreFilter = new GenreFilter({$target: this.$element, initialState : {genres:this.state.genres}, onClick: onClick});

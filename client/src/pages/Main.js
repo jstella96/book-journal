@@ -18,8 +18,8 @@ export default function Main({$target}){
     seletedGenres:[],
     sortBy: '',
     seletedTag: [],
-    keyword:''
-
+    keyword:'',
+    filter:{}
   }
 
 
@@ -28,21 +28,24 @@ export default function Main({$target}){
       ...this.state,
       ...nextState
     }
-    bookJournalList.setState({ bookJournals : this.state.bookJournals, keyword: this.state.keyword, sortBy:this.state.sortBy});
     sideFilter.setState({genres:this.state.genres,tags:this.state.tags,years:this.state.years})
+    bookJournalList.setState({ bookJournals : this.state.bookJournals, keyword: this.state.keyword, sortBy:this.state.sortBy});
     this.render()
   }
 
   this.init = async () => {
     const user = await getUser("jstella");
     const bookJournals = await getBookJournals("jstella");
-    setItem("user",user)
     const years = this.groupByYear(bookJournals);
     const genres = this.countByGenre(user.genres,bookJournals);
+
+    setItem("user",user)
     setItem("genres",  genres)
     setItem("bookJournals",  bookJournals)
-
+    setItem("userId", 'guest')
     this.setState({genres:genres,tags:user.tags,years:years,bookJournals:bookJournals})
+
+    onFilter({sort:{value:"date"}})
   }
   
   this.countByGenre = ( userGenres , bookJournals ) => {
@@ -55,13 +58,12 @@ export default function Main({$target}){
 
     bookJournals.map(bookJournal => { 
       if(bookJournal.genre){
-        const genreId = bookJournal.genre._id
+        const genreId = bookJournal.genre
         if(map.has(genreId))
           map.set(genreId, map.get(genreId)+1)
         }
       }
     )
-
     genres = genres.map( genre => { return { ...genre, ...{ count : map.get(genre._id) } }} )
     const all = {name:"ALL", count: bookJournals.length , _id: 'all'}
     genres = [ all, ...genres]
@@ -104,19 +106,59 @@ export default function Main({$target}){
   const search = new Search({$target:$page.querySelector('.grid-container'), initialState:"", onChange: (keyword) => {this.setState({keyword:keyword})} }) 
   const bookJournalList = new BookJournalList({$target:$page.querySelector('.grid-container'),initialState: {
     bookJournals : this.state.bookJournals
-  },
-  onLikeClick: () => {
-    alert('좋아요 클릭')
-  } 
-  });
+  }});
 
+
+  const onFilter= (nextFilter) => {
+    const filter = {
+      ...this.state.filter,
+      ...nextFilter
+    }
+    this.setState({filter:filter})
+    const keys = Object.keys(filter);
+    let originBookJornals = getItem('bookJournals');
+    keys.forEach(key => {
+      originBookJornals = filterFounction[key](originBookJornals, filter[key])
+    })
+    this.setState({bookJournals:originBookJornals})
+  }
+
+  const filterFounction = {
+    'genre' : (items, genre) => {
+      return items.filter( item => genre._id === 'all' || item.genre === genre._id )
+    },
+    'year' : (items, year) => {
+      return items.filter( item => year.name === 'ALL' || new Date(item.date).getFullYear() === parseInt(year.name) )
+    },
+    'tags' : (items, tags) => {
+      return items.filter( item => tags.length === 0  || item.tags.filter( tag => tags.includes(tag)).length > 0 )
+    },
+    'sort': (items, sortBy) => {
+      const value = sortBy.value
+      items.sort( (a, b) => {
+        if(a[value]< b[value]) return 1;
+        if(a[value]> b[value]) return -1;
+        if(a[value]=== b[value]) return 0;
+        else return 1;
+      })
+      return items;
+    }
+  }  
+  
   new BookJournalList({$target:$page.querySelector('.grid-container'),initialState: {} });
-  const sideFilter = new SideFilter({$target:$page.querySelector('.grid-container'),initialState: {} })
+
+  const sideFilter =new SideFilter({$target:$page.querySelector('.grid-container'),initialState:{genres:this.state.genres,tags:this.state.tags,years:this.state.years}, onClick: onFilter })
+
 
   $target.appendChild($page)
 
-  this.render = () => {}
+  this.render = () => {
+
+
+  }
 
 
   this.init();
+
+  this.render();
 }

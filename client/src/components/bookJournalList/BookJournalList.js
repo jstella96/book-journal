@@ -1,7 +1,7 @@
 import BookJournalCard from "./BookJournalCard.js";
 import {routeChange} from '../../lib/route/route.js'
 
-export default function BookJournalList({$target, initialState={}, onLikeClick}){
+export default function BookJournalList({$target, initialState={}}){
 
   this.$element = document.createElement('div'); 
   this.$element.className = "book-journal-list"
@@ -44,11 +44,7 @@ export default function BookJournalList({$target, initialState={}, onLikeClick})
 
   this.$element.addEventListener('click',(e)=>{
     const $item = e.target.closest('.book-journal-list__like')
-    if ($item) {
-      onLikeClick();
-      e.preventDefault();
-      return;
-    }
+    if ( $item) return;
     const $card = e.target.closest('.book-journal-list__card')
     if ($card) {
       const { id } = $card.dataset
