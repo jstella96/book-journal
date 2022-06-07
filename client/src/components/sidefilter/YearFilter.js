@@ -1,5 +1,5 @@
 
-export default function YearFilter({$target, initialState={}, onEvent}){
+export default function YearFilter({$target, initialState={}, onClick}){
   
   this.$element = document.createElement('div'); 
   this.$element.className = "side-filter__year"
@@ -24,9 +24,8 @@ export default function YearFilter({$target, initialState={}, onEvent}){
 
     let {years,  selectedIndex} = this.state
 
-    const yearTemplate = years.map( (year,index) => 
-        `
-        <li class="side-filter__button ${index ==  selectedIndex ? 'side-filter__button--selected' : ''}">
+    const yearTemplate = years.map( (year,index) => `
+        <li data-index="${index}" class="side-filter__button ${index ==  selectedIndex ? 'side-filter__button--selected' : ''}">
           <span class="side-filter__name">${year.name}</span>
           <span class="side-filter__count">${year.count}</span>
         </li>
@@ -41,8 +40,10 @@ export default function YearFilter({$target, initialState={}, onEvent}){
   this.$element.addEventListener('click',(e)=>{
     const $li = e.target.closest('li')
       if ($li) {
-        const {genres, selectedIndex} = this.state
-        onClick(genres[selectedIndex]);
+        const {index} = $li.dataset
+        this.setState({selectedIndex: index})
+        const {years, selectedIndex} = this.state
+        onClick({year: years[selectedIndex]});
       }
   })
   
