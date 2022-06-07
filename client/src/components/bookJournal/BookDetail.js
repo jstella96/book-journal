@@ -1,19 +1,12 @@
 
-export default function BookDetail({$target, initialState={}, onChange=()=>{} }){
+export default function BookDetail({$target, initialState={}, onChange }){
   
   this.$element = document.createElement('div'); 
   this.$element.className = "book-detail"
   
 
   this.state = {
-    form: {
-      imagePath: "http://image.yes24.com/goods/74261416/XL",
-      title:"우리가 빛의 속도로 갈 수 있다면",
-      publisher:"책만",
-      author:"로베르트",
-      date: '2012-05-48',
-      selectedGenreId: "",
-    },
+    form: { },
     genres:[]
   }
 
@@ -37,9 +30,9 @@ export default function BookDetail({$target, initialState={}, onChange=()=>{} })
         <div class="book-detail__text">작가: <div class="book-detail__info   book-detail__input inline"  data-model="author" placeholder="비어있음" spellcheck="false" contenteditable="true">${form.author}</div></div >
         <div class="book-detail__text">읽은날짜: <div class="book-detail__info  book-detail__input inline" data-model="date" placeholder="1999-01-01 형태" spellcheck="false" contenteditable="true">${form.date}</div> </div >
         <div class="book-detail__text">장르:  
-          <select class="book-detail__info book-detail__select  inline"  data-model="genre" >
-          ${genres.map((genre, index)=>
-            `<option value="${genre._id}">${genre.name}</option>`
+          <select class="book-detail__info book-detail__select inline"  data-model="genre" >
+          ${genres.map((genre)=>
+            `<option  ${ genre._id == form.genre ? 'selected' : ''} value="${genre._id}">${genre.name}</option>`
           ).join('')}
           </select>
         </div >
@@ -63,6 +56,8 @@ export default function BookDetail({$target, initialState={}, onChange=()=>{} })
     if($text){
       const {model} = e.target.dataset //위에서 저장
       this.state.form[model]=e.target.value
+      console.log(e.target.value)
+      console.log(this.state.form[model])
       onChange(this.state.form)
     }
   })
