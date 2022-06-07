@@ -3,27 +3,30 @@ import Sort from "./Sort.js";
 import TagFilter from "./TagFilter.js";
 import YearFilter from "./YearFilter.js";
 
-export default function SideFilter({$target, initialState={}, onEvent}){
-  //[필수]
+export default function SideFilter({$target, initialState={}, onClick}){
   this.$element = document.createElement('div'); 
   this.$element.className = "side-filter"
   
-  /* 이름 종속되게 짓지 말기 */
   this.state = {
-
+    genres : initialState.genres? initialState.genres : [] ,
+    years:  initialState.years?initialState.years: [],
+    tags: initialState.tags?initialState.tags: [],
+    sort: [{name:"작성날짜"},{name:"좋아요"}]
   }
-  //this.state = initialState
   
-  const genreFilter = new GenreFilter({$target: this.$element});
-  const yearFilter = new YearFilter({$target: this.$element});
-  const tagFilter = new TagFilter({$target: this.$element});
-  const sort = new Sort({$target: this.$element});
+  const genreFilter = new GenreFilter({$target: this.$element, initialState : {genres:this.state.genres}, onClick: onClick});
+  const yearFilter = new YearFilter({$target: this.$element,initialState : {years:this.state.years}, onClick: onClick});
+  const tagFilter = new TagFilter({$target: this.$element, initialState : {tags:this.state.tags}, onClick: onClick});
+  const sort = new Sort({$target: this.$element, initialState : {sort: this.state.sort}, onClick: onClick});
   
   this.setState = (nextState) => {
     this.state = {
       ...this.state,
       ...nextState
     }
+    genreFilter.setState({genres:this.state.genres})
+    yearFilter.setState({years:this.state.years})
+    tagFilter.setState({tags:this.state.tags})
     this.render()
   }
   

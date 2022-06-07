@@ -16,11 +16,12 @@ const UserSchema = new mongoose.Schema(
       required:true,
       default:''
     },
-    genre: {
+    genres: {
       type: [GenreShema],
       default:[]
     },
-    tag: {
+ 
+    tags: {
       type: [TagShema],
       default:[]
     },

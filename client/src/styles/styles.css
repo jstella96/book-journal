@@ -16,6 +16,23 @@ html, body {
   margin: 0 5%;
   color: #8A8A8A
 }
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+[contenteditable="true"]:focus {
+  outline: none;
+}
+[contenteditable=true]:empty:before{
+  content: attr(placeholder);
+  color: #cdcdcd;
+}
+/*display: block;  For Firefox */
+.inline{
+  display: inline;
+}
 /* header*/
 .header {
   width: 100%;
@@ -34,6 +51,9 @@ html, body {
   font-weight: 600;
   color: #555;
   cursor:pointer;
+}
+.header__save{
+  right: 140px;
 }
 /* switch-button 다크/라이트 모드 */
 .switch-button { 
@@ -160,25 +180,35 @@ html, body {
   position: absolute;
   top: 50%;
   transform: translate( 0 ,-50%);
-  left: 3%;
-  width: 85px;
-  aspect-ratio: 1 / 1.5;
+  left: 20px;
+  width: 100px;
+  aspect-ratio: 1 / 1.3;
 }
 .book-journal-list__content{
   position: absolute;
-  top: 5px;
+  width: 80%;
+  height: 100%;
   left: 130px;
 } 
 .book-journal-list__title{
   color: #8A8A8A;
-} 
+}
+.book-journal-list__title--matched{
+  color: #555;
+}
 .book-journal-list__review{
   font-size: 16px;
   color: #C4C4C4;
+  width: 70%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;  /* 말줄임 적용 */
 }
 .book-journal-list__tag{
+  position: absolute;
   font-size: 12px;
   color: #8A8A8A;
+  bottom: 10px;
 } 
 /*클래스 분리 필요, 원형은 like-button 으로*/
 /*.like-button{}*/
@@ -199,6 +229,7 @@ html, body {
 .book-journal-list__like img{
   margin-top: 20px;
   width: 30%;
+
   display: inline-block;
 }
 .book-journal-list__like span{
@@ -233,6 +264,7 @@ html, body {
 .side-filter__button span{
   top: 50%;
   transform: translate( 0 ,-50%);
+  
 }
 .side-filter__button .side-filter__name{
   position: absolute;
@@ -269,6 +301,14 @@ html, body {
   padding-bottom: 30px;
 }
 
+.side-filter__tag .side-filter__button{
+  display: inline-block;
+  padding: 4px 8px;
+  font-size: 15px;
+  height:20px;
+}
+
+/*tag*/
 .tag {
   background: #4FD0EC;
   box-shadow: inset -2px -2px 4px rgba(255, 255, 255, 0.31), inset 2px 1px 16px rgba(0, 0, 0, 0.15);
@@ -278,6 +318,9 @@ html, body {
   font-weight: 600;
   font-size: 14px;
   padding: 3px 7px ;
+}
+.tag--selected{
+  background: #3fa6bd;
 }
 
 
@@ -301,16 +344,15 @@ html, body {
   position: absolute;
   top: 50%;
   transform: translate( 0 ,-50%);
-  left: 3%;
-  width: 85px;
-  aspect-ratio: 1 / 1.5;
+  width: 100px;
+  aspect-ratio: 1 / 1.3;
 }
 .book-detail__title{
   margin-bottom: 10px;
 } 
 .book-detail__content{
   position: absolute;
-  left: 140px;
+  left: 110px;
 } 
 .book-detail__text{
   font-size: 14px;
@@ -338,27 +380,36 @@ html, body {
 .book-review__content {
   width: 100%;
   min-height: 100px;
+  padding: 10px 20px;
 }
 /*Quote*/
 .book-quote  {
   width: 100%;
   padding: 10px;
   margin-bottom: 20px;
+
 }
 
-.book-quote__content {
+.book-quote__scrap {
   width: 100%;
   min-height: 500px;
   padding-top: 20px;
   position: relative;
 }
-.book-quote__list {
-  min-height: 150px;
+.book-quote__content {
+
   width: 80%;
-  background-color: #efe5e8;
   border-radius: 10px;
   margin-left: 10%;
   margin-bottom: 50px;
+}
+.book-quote__text {
+  min-height: 150px;
+  background-color: #efe5e8;
+  padding: 10px 20px ;
+}
+.book-quote__page {
+  float: right;
 }
 .book-quote__button {
   right: 30px;
@@ -369,6 +420,7 @@ html, body {
   box-shadow: -6px -6px 15px rgba(255, 255, 255, 0.78), 6px 6px 16px rgba(0, 0, 0, 0.15);
   border-radius: 66px;
   position: absolute;
+  border: none;
 }
 .book-quote__button img{
   width: 50%;

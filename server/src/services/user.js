@@ -17,19 +17,19 @@ export class UserService {
     return user;
   }
   async setTag(userId,tagDTO) {
-    const user = await this.userModel.updateOne({userId:userId},{ '$push': { tag : tagDTO} });
+    const user = await this.userModel.updateOne({userId:userId},{ '$push': { tags : tagDTO} });
     return user;
   }
   async deleteTag(userId, tagId) {
-    const user = await this.userModel.updateOne({userId:userId},{ '$pull': { tag : { _id: tagId }} });
+    const user = await this.userModel.updateOne({userId:userId},{ '$pull': { tags : { _id: tagId }} });
     return user;
   }
   async setGenre(userId,genreDTO) {
-    const user = await this.userModel.updateOne({userId:userId},{ '$push': { genre :genreDTO} });
+    const user = await this.userModel.updateOne({userId:userId},{ '$push': { genres :genreDTO} });
     return user;
   }
   async deleteGenre(userId, genreId) {
-    const user = await this.userModel.updateOne({userId:userId},{ '$pull': { genre : { _id: genreId }} });
+    const user = await this.userModel.updateOne({userId:userId},{ '$pull': { genres : { _id: genreId }} });
     return user;
   }
 }
