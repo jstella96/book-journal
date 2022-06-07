@@ -26,3 +26,9 @@ export const getTagName = tagId => {
   const tag = tags.find( tag =>  tagId === tag._id );
   return tag.name;
 }
+
+export const formatDate = date => {
+  console.log(date)
+  return  new Date(+new Date(date) + 3240 * 10000).toISOString().split("T")[0];
+}
+

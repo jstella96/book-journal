@@ -1,6 +1,6 @@
 
 import LikeButton from "./LikeButton.js";
-import {getTagName} from "../../utils/utils.js";
+import {getTagName, formatDate} from "../../utils/utils.js";
 export default function BookJournalCard({$target, initialState={}}){
 
   this.$element = document.createElement('div'); 
@@ -25,7 +25,7 @@ export default function BookJournalCard({$target, initialState={}}){
   this.render = () => {
     const { bookJournal, keyword} = this.state
     this.$element.innerHTML = `
-    <span class="book-journal-list__date">2021-02-18</span>
+    <span class="book-journal-list__date">${formatDate(bookJournal.date)}</span>
     <img class="book-journal-list__img" src="${bookJournal.imagePath ? bookJournal.imagePath : 'src/assets/images/bookcover.jpg'}"></img>
     <div class="book-journal-list__content">
       <h3 class="book-journal-list__title">${this.renderMatchedItem( keyword ,bookJournal.title)}</h5>
@@ -33,7 +33,7 @@ export default function BookJournalCard({$target, initialState={}}){
       <div class="book-journal-list__tag"><ul>${bookJournal.tags.map( tagId => `<li># ${getTagName(tagId)}</li>`).join('')}</ul></div>
     </div>
     `
-    new LikeButton({$target : this.$element})
+    new LikeButton({$target : this.$element,initialState:{likeCount:bookJournal.likeCount }})
   }
   this.renderMatchedItem = (keyword, item) => {
     if ( !item.includes(keyword)){

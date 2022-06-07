@@ -130,8 +130,8 @@ export default function Main({$target}){
     'year' : (items, year) => {
       return items.filter( item => year.name === 'ALL' || new Date(item.date).getFullYear() === parseInt(year.name) )
     },
-    'tag' : (items, tags) => {
-      return items.filter( item => tags.length === 0  || item.tags.filter( tag => tags.includes(tag)) > 0 )
+    'tags' : (items, tags) => {
+      return items.filter( item => tags.length === 0  || item.tags.filter( tag => tags.includes(tag)).length > 0 )
     },
     'sort': (items, sortBy) => {
       const value = sortBy.value

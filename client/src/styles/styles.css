@@ -389,7 +389,12 @@ button:focus {
   margin-bottom: 20px;
 
 }
-
+.book-quote__delete{
+  border-radius: 5px;
+  color: #bababa;
+  width: 50px;
+  text-align: center;
+}
 .book-quote__scrap {
   width: 100%;
   min-height: 500px;

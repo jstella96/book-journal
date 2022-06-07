@@ -1,4 +1,4 @@
-
+import {formatDate} from "../../utils/utils.js"
 export default function BookDetail({$target, initialState={}, onChange }){
   
   this.$element = document.createElement('div'); 
@@ -28,9 +28,10 @@ export default function BookDetail({$target, initialState={}, onChange }){
         <h2 class="book-detail__title book-detail__input" data-model="title" spellcheck="false"  placeholder="제목을 입력해주세요"  contenteditable="true">${form.title}</h2>
         <div class="book-detail__text">출판사: <div class="book-detail__info  book-detail__input inline" data-model="publisher" placeholder="비어있음" spellcheck="false" contenteditable="true">${form.publisher}</div> </div >
         <div class="book-detail__text">작가: <div class="book-detail__info   book-detail__input inline"  data-model="author" placeholder="비어있음" spellcheck="false" contenteditable="true">${form.author}</div></div >
-        <div class="book-detail__text">읽은날짜: <div class="book-detail__info  book-detail__input inline" data-model="date" placeholder="1999-01-01 형태" spellcheck="false" contenteditable="true">${form.date}</div> </div >
+        <div class="book-detail__text">작성날짜: <div class="book-detail__info  book-detail__input inline" data-model="date" placeholder="1999-01-01 형태">${form.date? formatDate(form.date): '0000-00-00'}</div> </div >
         <div class="book-detail__text">장르:  
           <select class="book-detail__info book-detail__select inline"  data-model="genre" >
+          <option value="none">선택</option>
           ${genres.map((genre)=>
             `<option  ${ genre._id == form.genre ? 'selected' : ''} value="${genre._id}">${genre.name}</option>`
           ).join('')}
