@@ -21,7 +21,7 @@ export class BookJournalService {
     return bookJournal;
   }
   async updateBookJournal(id,bookJournalDTO) {
-    const bookJournal = await this.bookJournalModel.updateOne({_id:id, $set: bookJournalDTO});
+    const bookJournal = await this.bookJournalModel.updateOne({ _id:id}, { $set: bookJournalDTO});
     return bookJournal;
   }
 }

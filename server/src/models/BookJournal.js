@@ -10,25 +10,30 @@ const BookJournalSchema = new mongoose.Schema(
       required: true,
     },
     imagePath: {
-      type: String
+      type: String,
+      default: ''
     },
     title: {
-      type: String
+      type: String,
+      default: '제목을 입력해주세요'
     },
     date:{ 
       type: Date, default: Date.now 
     },
     author:{
-      type: String 
+      type: String,
+      default: ''
     },
     publisher : {
-      type: String 
+      type: String,
+      default: '' 
     },
     review: {
       type: String 
     },
     likeCount : {
-      type: Number
+      type: Number,
+      default: ''
     },
     likeUsers : { 
       type: Object, //{USER_ID1 : true, USER_ID2 : true }
@@ -43,7 +48,7 @@ const BookJournalSchema = new mongoose.Schema(
       default: []
     },
     genre: {
-      type: mongoose.Schema.Types.ObjectId 
+      type: mongoose.Schema.Types.ObjectId
     }
   },  
   { timestamps: true }, 

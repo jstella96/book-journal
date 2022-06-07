@@ -34,6 +34,10 @@ export default (app) => {
     route.patch('/:id', async (req, res) => {
       const bookJournalId = req.params.id //problem
       const bookJournalDTO = req.body
+      delete bookJournalDTO._id;
+      delete bookJournalDTO.userId;
+      delete bookJournalDTO.createdAt;
+      delete bookJournalDTO.updatedAt;
       const BookJournalServiceInstance = new BookJournalService({BookJournalModel});
       const result = await BookJournalServiceInstance.updateBookJournal(bookJournalId,bookJournalDTO);
       return res.json(result).status(201);
