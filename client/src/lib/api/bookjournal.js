@@ -14,20 +14,23 @@ export const putBookJournal = async (bookJournal)  => {
         },
         body: JSON.stringify(bookJournal),
     }
-    request(`${BASE_URL}`,option)
+    return request(`${BASE_URL}`,option)
 }
 
 export const deleteBookJournal = async (bookJournalId) => {
     const option = {
         method: 'DELETE', 
     }
-    request(`${BASE_URL}/${bookJournalId}`,option)
+    return request(`${BASE_URL}/${bookJournalId}`,option)
 }
 
 export const updateBookJournal = async (bookJournalId,bookJournal)  => {
     const option = {
         method: 'PATCH', 
+        headers: {
+          'Content-Type': 'application/json',
+        }, 
         body: JSON.stringify(bookJournal),
     }
-    request(`${BASE_URL}/${bookJournalId}`,option)
+    return request(`${BASE_URL}/${bookJournalId}`,option)
 }

@@ -1,14 +1,14 @@
 
 export default function BookQuote({$target, initialState={}, onChange}){
-  //[필수]
+  
   this.$element = document.createElement('div'); 
   this.$element.className = "book-quote"
   
-  /* 이름 종속되게 짓지 말기 */
+
   this.state = {
     quotes : [{content:""}],
   }
-  //this.state = initialState
+
   $target.appendChild(this.$element)
 
   this.setState = (nextState) => {
@@ -56,7 +56,8 @@ export default function BookQuote({$target, initialState={}, onChange}){
     }
     const $delButton = e.target.closest('.book-quote__delete')
     if($delButton){
-      const {idx} = e.target.dataset 
+      
+      const {idx} = $delButton
       const quotes = [ ...this.state.quotes]
       quotes.splice(idx, 1);
       this.setState({quotes:quotes})

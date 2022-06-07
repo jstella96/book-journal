@@ -1,15 +1,15 @@
 
 export default function YearFilter({$target, initialState={}, onEvent}){
-  //[필수]
+  
   this.$element = document.createElement('div'); 
   this.$element.className = "side-filter__year"
   
-  /* 이름 종속되게 짓지 말기 */
+
   this.state = {
     years: initialState.years ? initialState.years : [],
     selectedIndex: 0
   }
-  //this.state = initialState
+
   $target.appendChild(this.$element)
 
   this.setState = (nextState) => {

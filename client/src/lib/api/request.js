@@ -25,7 +25,6 @@ const statusErrorFromResponse = (res) => {
 const request = async(url, option ={ }) => {
   try{
     const fullUrl = `${API_END_POINT}${url}`
-    console.log(fullUrl)
     const response = await fetch(fullUrl, option)
    
     if(response.ok){
@@ -36,9 +35,7 @@ const request = async(url, option ={ }) => {
     const statusErrorMessage = statusErrorFromResponse(res);
     if (statusErrorMessage) throw new Error(statusErrorMessage);
 
-    //throw new Error("요청실패")
   }catch(e){
-    //console.log(e)
     alert(`에러가 발생했습니다: ${e.message}`)
   }
 }

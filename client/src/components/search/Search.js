@@ -1,10 +1,10 @@
 
 export default function Search({$target, initialState={}, onChange}){
-  //[필수]
+  
   this.$element = document.createElement('div'); 
   this.$element.className = "search"
   
-  /* 이름 종속되게 짓지 말기 */
+
   this.state = initialState
   $target.appendChild(this.$element)
   //this.$element.setAttribute('autofocus','autofocus');

@@ -21,7 +21,6 @@ export default function GenreFilter({ $target, initialState = {}, onClick}){
   
   this.render = () => {
     const {genres,  selectedIndex} = this.state
-    console.log(this.state)
     const genreTemplate = genres.map( (genre,index) => 
         `
         <li class="side-filter__button ${index ==  selectedIndex ? 'side-filter__button--selected' : ''}">

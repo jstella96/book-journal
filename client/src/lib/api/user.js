@@ -12,7 +12,7 @@ export const putUser = async (user)  => {
         },
         body: JSON.stringify(user),
     }
-    request(`${BASE_URL}`,option)
+    return request(`${BASE_URL}`,option)
 }
 
 
@@ -21,7 +21,7 @@ export const putTag = async (tag)  => {
         method: 'POST', 
         body: JSON.stringify(tag),
     }
-    request(`${BASE_URL}/${userId}/tag`,option)
+    return  request(`${BASE_URL}/${userId}/tag`,option)
 }
 
 
@@ -30,7 +30,7 @@ export const deleteTag = async (userId)  => {
     const option = {
         method: 'DELETE', 
     }
-    request(`${BASE_URL}/${userId}/tag`,option)
+    return request(`${BASE_URL}/${userId}/tag`,option)
 }
 
 
@@ -39,7 +39,7 @@ export const putGenre = async (genre)  => {
         method: 'POST', 
         body: JSON.stringify(genre),
     }
-    request(`${BASE_URL}/${userId}/genre`,option)
+    return request(`${BASE_URL}/${userId}/genre`,option)
 }
 
 
@@ -48,5 +48,5 @@ export const deleteGenre = async (userId)  => {
     const option = {
         method: 'DELETE', 
     }
-    request(`${BASE_URL}/${userId}/genre`,option)
+    return request(`${BASE_URL}/${userId}/genre`,option)
 }

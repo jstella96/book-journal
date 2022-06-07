@@ -7,7 +7,7 @@ import {getUser, deleteGenre, deleteTag, putGenre, putTag} from "../lib/api/user
 import {getBookJournals, deleteBookJournal, getBookJournal, putBookJournal, updateBookJournal} from "../lib/api/bookjournal.js"
 
 export default function Main({$target}){
-  //[필수] 
+   
   const $page = document.createElement('div');
   $page.className = "main-page"
 
@@ -70,8 +70,8 @@ export default function Main({$target}){
 
   this.groupByYear = (objectArray) => {
     let group = objectArray.reduce(function (acc, obj) {
-      const createdAt = obj['createdAt']
-      const year = new Date(createdAt).getFullYear();
+      const date = obj['date']
+      const year = new Date(date).getFullYear();
       if (!acc["ALL"]) {
         acc["ALL"] = 0;
       }
@@ -112,7 +112,6 @@ export default function Main({$target}){
 
   new BookJournalList({$target:$page.querySelector('.grid-container'),initialState: {} });
   const sideFilter = new SideFilter({$target:$page.querySelector('.grid-container'),initialState: {} })
- 
 
   $target.appendChild($page)
 

@@ -1,15 +1,15 @@
 
-export default function BookTag({$target, initialState={}, onClick,onChange}){
-    //[필수]
+export default function BookTag({$target, initialState={}, onChange}){
+    
     this.$element = document.createElement('div'); 
     this.$element.className = ""
     
-    /* 이름 종속되게 짓지 말기 */
+  
     this.state = {
       tags: initialState.tags ? initialState.tags : [{name:"좋아용"}],
-      selectedIndex: []
+      selectedId: []
     }
-    //this.state = initialState
+  
     $target.appendChild(this.$element)
   
     this.setState = (nextState) => {
@@ -22,10 +22,10 @@ export default function BookTag({$target, initialState={}, onClick,onChange}){
     
     this.render = () => {
     
-      const {tags,  selectedIndex} = this.state
+      const {tags,  selectedId} = this.state
       const tagTemplate = tags.map( (tag,index) => 
           `
-          <li class="tag ${selectedIndex.includes(index) ? 'tag--selected' : ''}">
+          <li data-idx="${index}" class="tag ${selectedId.includes(tag._id) ? 'tag--selected' : ''}">
             <span class="tag__name">${tag.name}</span>
           </li>
           `
@@ -37,10 +37,21 @@ export default function BookTag({$target, initialState={}, onClick,onChange}){
     }
   
     this.$element.addEventListener('click',(e)=>{
-      const $li = e.target.closest('li')
+      const $li = e.target.closest('.tag')
         if ($li) {
-          const {genres, selectedIndex} = this.state
-          onClick(selectedIndex);
+          let {idx} =  $li.dataset 
+          idx = parseInt(idx)
+          let {selectedId, tags} = this.state
+          const id = tags[idx]._id
+          if(selectedId.includes(id)){
+            selectedId = selectedId.filter(function(item) {
+              return item !== id
+            })
+          }else{
+            selectedId.push(id)
+          }
+          this.setState({selectedId : selectedId})
+          onChange({tags:selectedId});
         }
     })
     this.render()
