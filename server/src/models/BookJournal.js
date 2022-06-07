@@ -35,9 +35,10 @@ const BookJournalSchema = new mongoose.Schema(
       type: Number,
       default: 0
     },
+    //type: Object, //{USER_ID1 : true, USER_ID2 : true }
     likeUsers : { 
-      type: Object, //{USER_ID1 : true, USER_ID2 : true }
-      default: {}
+      type: [],
+      default: []
     },
     quotes: {
       type: [QuoteShema],
