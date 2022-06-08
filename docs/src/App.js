@@ -49,9 +49,10 @@ export default function App({$target}){
     setItem('api-user',user)
   }
   
-  (async() => { await setApiforDemo()})();
+  (async() => { 
+    await setApiforDemo();
+    init(this.route)
+    this.route();
+  })();
 
-  init(this.route)
-  this.route();
-  routeChange('/')
 }
