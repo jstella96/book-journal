@@ -15,7 +15,7 @@ const BookJournalSchema = new mongoose.Schema(
     },
     title: {
       type: String,
-      default: '제목을 입력해주세요'
+      default: ''
     },
     date:{ 
       type: Date, default: Date.now 
