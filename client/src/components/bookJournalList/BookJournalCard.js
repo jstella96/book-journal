@@ -29,7 +29,7 @@ export default function BookJournalCard({$target, initialState={}}){
     <img class="book-journal-list__img" src="${bookJournal.imagePath ? bookJournal.imagePath : 'src/assets/images/bookcover.jpg'}"></img>
     <div class="book-journal-list__content">
       <h3 class="book-journal-list__title">${bookJournal.title? this.renderMatchedItem( keyword ,bookJournal.title) : '제목 없음'}</h5>
-      <p class="book-journal-list__review">${bookJournal.review?bookJournal.review :'리뷰를 작성해주세요' }</p>
+      <div class="book-journal-list__review">${bookJournal.review? bookJournal.review :'리뷰를 작성해주세요' }</div>
       <div class="book-journal-list__tag"><ul>${bookJournal.tags.map( tagId => `<li># ${getTagName(tagId)}</li>`).join('')}</ul></div>
     </div>
     `

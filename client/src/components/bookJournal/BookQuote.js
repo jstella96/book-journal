@@ -32,7 +32,7 @@ export default function BookQuote({$target, initialState = {}, onChange}){
             `
             <div class="book-quote__content">
               <blockquote>
-                <p data-idx="${index}" class="book-quote__text"  contenteditable="true" spellcheck="false">${quote.content ? quote.content : ''}</p>
+                <div data-idx="${index}" class="book-quote__text"  contenteditable="true" spellcheck="false">${quote.content ? quote.content : ''}</div>
               </blockquote>
               <span>&mdash; <cite data-idx="${index}" contenteditable="true" spellcheck="false"  placeholder="page" class="book-quote__page">${quote.page ? quote.page : '' }</cite></span>
               <div class="book-quote__delete" data-idx="${index}" >삭제<img src="src/assets/images/trash-can-gray.png" /></div>
