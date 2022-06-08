@@ -14,11 +14,11 @@ export default function App({$target}){
     $target.innerHTML = ''
     const routes = [
       {
-        path:"/",
+        path:"/book-journal/",
         page: Main
       },
       {
-        path:"/bookjournal",
+        path:"/book-journal/bookjournal",
         page: BookJournal
       }
     ]
@@ -37,7 +37,6 @@ export default function App({$target}){
          route: routes[0],
          result: [location.pathname]
        }
-       alert('존재하지 않는 페이지 입니다')
     }
     const param = getParams(match)
     new match.route.page({$target, ...param})
