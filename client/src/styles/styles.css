@@ -11,8 +11,9 @@
   --color-silver : #cdcdcd; /*placeholder*/
   --element-back-color: red;
   --color-persian-pink:#F87BCD;
-  --color-soft-peach: #efe5e8;
-  --color-cararra: #e8e7e0;
+  --color-soft-peach: #efe6ea;
+  --color-cararra: #ebeae0;
+  --color-mercury: #e9e9e9;
 }
 
 * {
@@ -87,7 +88,7 @@ html, body {
   border: none ;
   width: 55px;
   height: 30px;
-  background-color: var(--color-cararra);
+  background-color: var(--color-mercury);
   color: var(--color-gray);
   border-radius: 10px;
   position: absolute;
@@ -157,6 +158,19 @@ html, body {
   /*max-width: 1600px;*/
   margin: 0 auto;
 }
+/* mobile */
+@media screen and (max-width: 767px) {          
+  .grid-container {               
+    display: grid;      
+    grid-template-areas: "search""book-journal-list";     
+    grid-template-columns: 1fr;           
+  }      
+  .side-filter { 
+    display: none;
+  }      
+ }
+
+
 /*search*/
 .search {
   margin-top: 20px;
@@ -419,7 +433,7 @@ html, body {
 }
 .book-review__content {
   width: 100%;
-  min-height: 100px;
+  min-height: 150px;
   padding: 10px 20px;
 }
 /*Quote*/
@@ -437,16 +451,20 @@ html, body {
 .book-quote__content {
   margin: auto;
   position: relative;
-  width: 85%;
+  width: 82%;
   border-radius: 10px;
   margin-bottom: 40px;
 }
 .book-quote__content .book-quote__text {
   min-height: 150px;
-  background-color:  var(--color-soft-peach);
+  background-color:  var(--color-mercury);
   width: 100%;
   margin: 0;
 }
+.book-quote__content p {
+  padding: 10px 20px;
+}
+
 .book-quote__content span {
   display: inline;
   color: var(--color-silver);
