@@ -26,7 +26,7 @@ export default function BookTag({$target, initialState={}, onChange}){
       const tagTemplate = tags.map( (tag,index) => 
           `
           <li data-index="${index}" class="tag ${selectedIds.includes(tag._id) ? 'tag--selected' : ''}">
-            <span class="tag__name">${tag.name}</span>
+            <span class="tag__name"># ${tag.name}</span>
           </li>
           `
       ).join('')
