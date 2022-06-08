@@ -32,7 +32,7 @@ export default function BookQuote({$target, initialState={}, onChange}){
               
               `
               <div class="book-quote__content">
-              <div class="book-quote__delete" data-idx="${index}" >삭제</div>
+              <div class="book-quote__delete" data-idx="${index}" >삭제<img src="src/assets/images/trash-can-gray.png" /></div>
               <div class="book-quote__text" data-idx="${index}" spellcheck="false" contenteditable="true">
                 ${quote.content}
               </div>
