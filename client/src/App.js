@@ -5,8 +5,8 @@ import BookJournal from "./pages/BookJournal.js"
 import {init} from './lib/route/route.js'
 import {getParams, pathToRegex} from './utils/utils.js'
 
-const cache = {}
-
+import {setItem} from './utils/localStorage.js'
+import request from './lib/demo-api/request.js'
 export default function App({$target}){
 
   this.route = () => {
@@ -42,7 +42,15 @@ export default function App({$target}){
     new match.route.page({$target, ...param})
   }
 
+  const setApiforDemo = async () => {
+    const bookJournals = await request('/book-journal.json')
+    const user = await request('/user.json')
+    setItem('api-book-journals',bookJournals)
+    setItem('api-user',user)
+  }
+  setApiforDemo();
   init(this.route)
+
  // alert('이 페이지는 바닐라 자바스크립트로  SPA 만들기 연습을 위해 만든 샘플 페이지 입니다. back-end , db와는 연동이 아직은 연동이 되어 있지 않으며(구현중) 기본기능만(정렬, 추가, 검색) 구현한 페이지 입니다. 나중에 완성되면 구경오세요')
   this.route() 
 }

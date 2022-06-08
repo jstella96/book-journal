@@ -1,4 +1,4 @@
-import {getBookJournals, deleteBookJournal, getBookJournal, putBookJournal, updateBookJournal} from "../../lib/api/bookjournal.js"
+import {getBookJournals, deleteBookJournal, getBookJournal, putBookJournal, updateBookJournal} from "../../lib/demo-api/bookjournal.js"
 import {routeChange} from '../../lib/route/route.js'
 
 export default function MainHeader({$target, initialState = {}}){

@@ -33,7 +33,7 @@ export default function BookJournalCard({$target, initialState={}}){
       <div class="book-journal-list__tag"><ul>${bookJournal.tags.map( tagId => `<li># ${getTagName(tagId)}</li>`).join('')}</ul></div>
     </div>
     `
-    new LikeButton({$target : this.$element,initialState:{likeCount:bookJournal.likeCount }})
+    new LikeButton({$target : this.$element,initialState:{likeCount:bookJournal.likeCount,likeUsers:bookJournal.likeUsers  }})
   }
   this.renderMatchedItem = (keyword, item) => {
     if ( !item.includes(keyword)){

@@ -3,8 +3,8 @@ import MainHeader  from "../components/header/MainHeader.js"
 import BookJournalList from "../components/bookJournalList/BookJournalList.js"
 import Search from "../components/search/Search.js"
 import {getItem,setItem} from "../utils/localStorage.js"
-import {getUser} from "../lib/api/user.js"
-import {getBookJournals} from "../lib/api/bookjournal.js"
+import {getUser} from "../lib/demo-api/user.js"
+import {getBookJournals} from "../lib/demo-api/bookjournal.js"
 import { groupByYear, countByGenre, filterRule } from "../utils/filter.js"
 
 export default function Main({$target}){

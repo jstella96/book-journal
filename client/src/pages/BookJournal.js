@@ -5,7 +5,7 @@ import BookQuote from "../components/bookJournal/BookQuote.js";
 import BookTag from "../components/bookJournal/BookTag.js";
 import {getItem} from "../utils/localStorage.js"
 import {getParameterByName} from "../utils/utils.js"
-import { deleteBookJournal, getBookJournal, updateBookJournal} from "../lib/api/bookjournal.js"
+import { deleteBookJournal, getBookJournal, updateBookJournal} from "../lib/demo-api/bookjournal.js"
 import {routeChange} from '../lib/route/route.js'
 
 export default function BookJournal({$target}){
