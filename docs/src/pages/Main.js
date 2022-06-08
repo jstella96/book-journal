@@ -39,10 +39,10 @@ export default function Main({$target}){
 
     const user = await getUser("jstella");
     const bookJournals = await getBookJournals("jstella");
-    if(bookJournals || user) return;
+
     const years = groupByYear(bookJournals);
     const genres = countByGenre(user.genres,bookJournals);
-
+    
     setItem("user",user)
     setItem("genres",  genres)
     setItem("bookJournals",  bookJournals)
