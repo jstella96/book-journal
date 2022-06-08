@@ -25,8 +25,8 @@ export const putBookJournal = async ()  => {
 
 export const deleteBookJournal = async (bookJournalId) => {
 
-    const bookJournals = getItem('api-book-journals');
-    const nextBookJournals = bookJournals.filter( bookJournal => bookJournal._id !== bookJournalId);
+    const bookJournals = getItem('api-book-journals'); 
+    const nextBookJournals = bookJournals.filter( bookJournal => String(bookJournal._id) !== bookJournalId);
     setItem('api-book-journals',nextBookJournals);
 
 }
