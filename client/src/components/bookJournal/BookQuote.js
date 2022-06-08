@@ -34,15 +34,13 @@ export default function BookQuote({$target, initialState={}, onChange}){
                 <blockquote data-idx="${index}" spellcheck="false" contenteditable="true">
                   <P class="book-quote__text">${quote.content ? quote.content : ''}</P>
                 </blockquote>
-                <span>&mdash; <cite data-idx="${index}" contenteditable="true" placeholder="page" class="book-quote__page">${quote.page ? quote.page : '' }</cite></span>
+                <span>&mdash; <cite data-idx="${index}" contenteditable="true" spellcheck="false"  placeholder="page" class="book-quote__page">${quote.page ? quote.page : '' }</cite></span>
                 <div class="book-quote__delete" data-idx="${index}" >삭제<img src="src/assets/images/trash-can-gray.png" /></div>
               </div>
               `
              ).join('')}
           </div>
-       
-        </div>
-     
+        </div>  
     `
   }
   
@@ -66,12 +64,12 @@ export default function BookQuote({$target, initialState={}, onChange}){
   this.$element.addEventListener('keyup', e => {
     const $text = e.target.querySelector('p')
     if($text){
-      const {idx} = e.target.dataset //위에서 저장
+      const {idx} = e.target.dataset 
       this.state.quotes[idx].content=$text.innerHTML
     }
     const $page = e.target.closest(".book-quote__page")
     if($page){
-      const {idx} = e.target.dataset //위에서 저장
+      const {idx} = e.target.dataset 
       this.state.quotes[idx].page=$page.innerHTML
     }
     onChange({quotes: this.state.quotes})
