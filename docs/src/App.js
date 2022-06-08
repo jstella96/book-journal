@@ -2,7 +2,7 @@
 import Main from "./pages/Main.js"
 import BookJournal from "./pages/BookJournal.js"
 
-import {init , routeChange} from './lib/route/route.js'
+import {init} from './lib/route/route.js'
 import {getParams, pathToRegex} from './utils/utils.js'
 
 import {setItem} from './utils/localStorage.js'
