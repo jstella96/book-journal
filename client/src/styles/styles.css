@@ -455,7 +455,7 @@ html, body {
   border-radius: 10px;
   margin-bottom: 40px;
 }
-.book-quote__content .book-quote__text {
+.book-quote__content blockquote {
   min-height: 150px;
   background-color:  var(--color-mercury);
   width: 100%;
