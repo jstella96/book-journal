@@ -6,7 +6,7 @@ export default function BookQuote({$target, initialState={}, onChange}){
   
 
   this.state = {
-    quotes : [{content:""}],
+    quotes : [{content:"",page:""}],
   }
 
   $target.appendChild(this.$element)
@@ -29,15 +29,16 @@ export default function BookQuote({$target, initialState={}, onChange}){
           </button>
           <div class="book-quote__list">
              ${quotes.map((quote,index) => 
-              
               `
               <div class="book-quote__content">
-              <div class="book-quote__delete" data-idx="${index}" >삭제<img src="src/assets/images/trash-can-gray.png" /></div>
-              <div class="book-quote__text" data-idx="${index}" spellcheck="false" contenteditable="true">
-                ${quote.content}
+                <blockquote class="book-quote__text" data-idx="${index}" spellcheck="false" contenteditable="true">
+                  <P>${quote.content ? quote.content : ''}</P>
+                </blockquote>
+                <span>&mdash; <cite contenteditable="true" placeholder="page" class="book-quote__page">${quote.page ? quote.page : '' }</span></cite>
+                <div class="book-quote__delete" data-idx="${index}" >삭제<img src="src/assets/images/trash-can-gray.png" /></div>
+            
               </div>
-              <div class="book-quote__page"  spellcheck="false" contenteditable="true" placeholder='-본문위치'></div>
-              </div>
+              
               `
              ).join('')}
           </div>
@@ -51,7 +52,7 @@ export default function BookQuote({$target, initialState={}, onChange}){
   this.$element.addEventListener('click',(e)=>{
     const $button = e.target.closest('.book-quote__button')
     if($button){
-      this.state.quotes.push({content:""})
+      this.state.quotes.push({content:"",page:""})
       this.render();
     }
     const $delButton = e.target.closest('.book-quote__delete')
@@ -69,6 +70,12 @@ export default function BookQuote({$target, initialState={}, onChange}){
     if($text){
       const {idx} = e.target.dataset //위에서 저장
       this.state.quotes[idx].content=e.target.innerHTML
+    }
+    const $page = e.target.closest('.book-quote__page')
+    if($page){
+      const {idx} = e.target.dataset 
+      this.state.quotes[idx].page=e.target.innerHTML
+      console.log(this.state.quotes[idx])
     }
     onChange({quotes: this.state.quotes})
   })

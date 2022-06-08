@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-const QuoteShema = new mongoose.Schema({  content: String,  page: String  });
+const QuoteShema = new mongoose.Schema({  content:{ type: String, default:"" },  page: { type: String, default:"" } });
 
 const BookJournalSchema = new mongoose.Schema(
   {

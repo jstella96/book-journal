@@ -1,14 +1,11 @@
 import {routeChange} from '../../lib/route/route.js'
 
-export default function BookJournalHearder({$target, initialState={},  onSave}){
+export default function BookJournalHearder({$target, initialState, onSave, onDelete}){
 
   this.$element = document.createElement('div'); 
   this.$element.className = "header book-journal-header"
   
-
-  this.state = {
-
-  }
+  this.state = {}
 
   $target.appendChild(this.$element)
 
@@ -25,8 +22,8 @@ export default function BookJournalHearder({$target, initialState={},  onSave}){
         <div class="book-journal-header__back">
           < BACK
         </div>
-        <button class="header__button header__save"> 저장</button>
-        <button class="header__button"> 책검색</button>
+        <button class="header__button header__save"> 저장 </button>
+        <button class="header__button header__delete"> 삭제 </button>
         <label class="switch-button"> 
           <input type="checkbox"/> 
           <span class="switch-button__onoff"></span> 
@@ -35,13 +32,17 @@ export default function BookJournalHearder({$target, initialState={},  onSave}){
   }
 
   this.$element.addEventListener('click', e => {
-    const $el = e.target.closest('.header__save')
-    if($el){
+    const $save = e.target.closest('.header__save')
+    if($save){
       onSave()
     }
-    const $button = e.target.closest('.book-journal-header__back')
-    if($button){
+    const $back = e.target.closest('.book-journal-header__back')
+    if($back){
       routeChange('/')
+    }
+    const $delete = e.target.closest('.header__delete')
+    if($delete){
+      onDelete()
     }
   })
 

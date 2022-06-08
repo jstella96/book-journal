@@ -43,7 +43,12 @@ export default function BookJournal({$target}){
     const res = await updateBookJournal(id,form);
     routeChange('/')
   }
-  new BookJournalHearder({$target, onSave})
+  const onDelete= async () => {
+    const {id} = this.state;
+    const res = await deleteBookJournal(id);
+    routeChange('/')
+  }
+  new BookJournalHearder({$target, onSave, onDelete})
   const bookDetail = new BookDetail({$target, initialState:{form:this.state.form}, onChange})
   const bookTag = new BookTag({$target ,initialState:{selectedId:this.state.form.tags},onChange})
   const bookReview = new BookReview({$target,initialState:{review:this.state.review},onChange})

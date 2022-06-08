@@ -1,4 +1,5 @@
-/*공통*/
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Display:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Noto+Sans+KR&family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap');/*공통*/
+/* 버튼,박스등 일부 css에서 중복현상 발생, 추후에도 사용 할 수 있도록 분리작업 모듈 작업 필요 자세한건 이슈 참조 */
 ul {
   padding: 0;
   margin: 0;
@@ -8,13 +9,17 @@ li {
   list-style: none;
   display: inline-block;
 }
-
+/* body{
+  font: 16px "georgia";
+} */
 html, body {
   background-color: #F4F4F4;
   width: 90%;
   height: 100%;
   margin: 0 5%;
-  color: #8A8A8A
+  color: #8A8A8A;
+  font-family: "georgia",'Noto Sans Display','Noto Serif KR', serif;
+  
 }
 input:focus,
 select:focus,
@@ -25,8 +30,9 @@ button:focus {
 [contenteditable="true"]:focus {
   outline: none;
 }
-[contenteditable=true]:empty:before{
+[contenteditable=true]:empty:not(:focus):before{
   content: attr(placeholder);
+  pointer-events: none;
   color: #cdcdcd;
 }
 /*display: block;  For Firefox */
@@ -39,6 +45,7 @@ button:focus {
   margin: 0 0;
   padding-top: 20px;
   position: relative;
+  color: #444;
 }
 .header__button{
   border: none ;
@@ -49,11 +56,11 @@ button:focus {
   position: absolute;
   right: 70px;
   font-weight: 600;
-  color: #555;
+  color: #666;
   cursor:pointer;
 }
 .header__save{
-  right: 140px;
+  right: 130px;
 }
 /* switch-button 다크/라이트 모드 */
 .switch-button { 
@@ -98,10 +105,10 @@ button:focus {
 
 /*main-page*/
 
-/* main header*/
+/* main header  color: #8A8A8A;*/
 .main-header__title{
   display: inline;
-  color: #8A8A8A;
+  cursor: pointer;
 }
 
 .grid-container {
@@ -161,6 +168,7 @@ button:focus {
   width: 100%;
 }
 .book-journal-list__card {
+  cursor: pointer;
   margin-bottom: 15px;
   box-sizing: border-box;
   position: relative;
@@ -241,7 +249,6 @@ button:focus {
 /*side-filter*/
 .side-filter {
   grid-area: side-filter;
-  background-color: yellowgreen;
   min-height:200px;
   position: relative;
   padding-left: 20px;
@@ -264,7 +271,6 @@ button:focus {
 .side-filter__button span{
   top: 50%;
   transform: translate( 0 ,-50%);
-  
 }
 .side-filter__button .side-filter__name{
   position: absolute;
@@ -308,7 +314,7 @@ button:focus {
   height:20px;
 }
 
-/*tag*/
+/*tag
 .tag {
   background: #4FD0EC;
   box-shadow: inset -2px -2px 4px rgba(255, 255, 255, 0.31), inset 2px 1px 16px rgba(0, 0, 0, 0.15);
@@ -322,14 +328,32 @@ button:focus {
 .tag--selected{
   background: #3fa6bd;
 }
-
-
-
+*/
+.tag {
+  cursor: pointer;
+  color: #8A8A8A;
+  height: 35px;
+  position: relative;
+  background: #F4F4F4;
+  box-shadow: -6px -6px 15px rgba(255, 255, 255, 0.78), 6px 6px 16px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  display: inline-block;
+  padding: 4px 8px;
+  font-size: 15px;
+  height:20px;
+}.tag span{
+  top: 50%;
+  transform: translate( 0 ,-50%);
+}.tag--selected{
+  background-color: #ddd;
+  box-shadow: inset 1px 3px 1px #aaa;
+}
 /* book journal page*/
 .book-journal-header__back{
   display: inline;
   font-size: 25px;
   font-weight: 600;
+  cursor: pointer;
 }
 
 /* book journal detail*/
@@ -348,7 +372,8 @@ button:focus {
   aspect-ratio: 1 / 1.3;
 }
 .book-detail__title{
-  margin-bottom: 10px;
+  margin: 11px 0px 6px 0px;
+  height: 40px;
 } 
 .book-detail__content{
   position: absolute;
@@ -374,7 +399,7 @@ button:focus {
 /*Review*/
 .book-review {
   width: 100%;
-  padding: 10px;
+
   margin-bottom: 20px;
 }
 .book-review__content {
@@ -385,38 +410,47 @@ button:focus {
 /*Quote*/
 .book-quote  {
   width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
 
+  margin-bottom: 20px;
 }
-.book-quote__delete{
-  border-radius: 5px;
-  color: #bababa;
-  width: 50px;
-  text-align: center;
-}
+
 .book-quote__scrap {
   width: 100%;
   min-height: 500px;
-  padding-top: 20px;
   position: relative;
+  padding: 30px 0;
 }
 .book-quote__content {
-
-  width: 80%;
+  margin: auto;
+  position: relative;
+  width: 85%;
   border-radius: 10px;
-  margin-left: 10%;
   margin-bottom: 50px;
 }
-.book-quote__text {
+.book-quote__content .book-quote__text {
   min-height: 150px;
   background-color: #efe5e8;
-  padding: 10px 20px ;
+  width: 100%;
+  margin: 0;
 }
-.book-quote__page {
-  float: right;
+.book-quote__content span {
+  display: inline;
+  color: #cdcdcd;
+}
+.book-quote__delete{
+  cursor: pointer;
+  color: #bababa;
+  width: 50px;
+  text-align: center;
+  position: absolute;
+  right: 5px;
+  display: inline;
+}
+.book-quote__delete img{
+  width: 15px;
 }
 .book-quote__button {
+  cursor: pointer;
   right: 30px;
   width: 50px;
   height: 50px;
@@ -438,3 +472,49 @@ button:focus {
   margin-top: 50px;
 }
 
+/**/
+/* blockquote {
+  font: 16px "georgia";
+  position: relative;
+background: #f9f9f9;
+}
+
+
+
+.entry-content blockquote p {
+  max-width: 100%;
+  padding: 0;
+  margin: 0 0 15px;
+  font-size: 20px;
+} */
+
+
+/* 
+
+body {
+  background: white;
+  max-width: 1200px;
+  margin: 10vh auto;
+  font: 16px "georgia";
+  line-height: 1.65;
+  color: #333;
+} */
+
+/*select*/
+select {
+
+  width: 100px; /* 원하는 너비설정 */    padding: .2em .2em; /* 여백으로 높이 설정 */    font-family: inherit;  /* 폰트 상속 */
+  border:1px solid #b8b7b7;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  background-color: inherit;
+  color: inherit;
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance : none;
+}
+select::-ms-expand { 
+  display: none;
+}
