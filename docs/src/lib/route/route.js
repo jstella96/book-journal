@@ -1,5 +1,5 @@
 const ROUTE_CHANGE_EVENT = "ROUTE_CHANGE"
-
+const ROUTE_END_POINT = "/book-journal"
 export const init = (onRouteChange) => {
     //1]뒤로가기 앞으로 가기 하면 발생
     window.addEventListener('popstate',onRouteChange)
@@ -19,6 +19,7 @@ export const init = (onRouteChange) => {
 }
 
 export const routeChange = (url, params) => {
-  history.pushState(null,null,url)//
+  const nextURL = `${ROUTE_END_POINT}${url}`
+  history.pushState(null,null,nextURL)//
   window.dispatchEvent(new CustomEvent(ROUTE_CHANGE_EVENT, params))
 } 
