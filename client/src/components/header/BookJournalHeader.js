@@ -19,15 +19,15 @@ export default function BookJournalHearder({$target, initialState, onSave, onDel
   
   this.render = () => {
     this.$element.innerHTML = `
-        <h1 class="book-journal-header__back">
-          < BACK
-        </h1>
-        <button class="header__button header__save"> 저장 </button>
-        <button class="header__button header__delete"> 삭제 </button>
-        <label class="switch-button"> 
-          <input type="checkbox"/> 
-          <span class="switch-button__onoff"></span> 
-        </label>
+      <h1 class="book-journal-header__back">
+        < BACK
+      </h1>
+      <button class="header__button header__save"> 저장 </button>
+      <button class="header__button header__delete"> 삭제 </button>
+      <label class="switch-button"> 
+        <input type="checkbox"/> 
+        <span class="switch-button__onoff"></span> 
+      </label>
     `
   }
 
@@ -45,7 +45,6 @@ export default function BookJournalHearder({$target, initialState, onSave, onDel
       onDelete()
     }
   })
-
   
   this.render()
 }

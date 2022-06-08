@@ -3,7 +3,6 @@ export default function TagFilter({$target, initialState={}, onClick}){
   
   this.$element = document.createElement('div'); 
   this.$element.className = "side-filter__tag"
-  
 
   this.state = {
     tags: initialState.tags ? initialState.tags : [],
@@ -21,7 +20,6 @@ export default function TagFilter({$target, initialState={}, onClick}){
   }
   
   this.render = () => {
-  
     const {tags,  selectedTags} = this.state
     const tagTemplate = tags.map( tag => 
         `
@@ -50,5 +48,6 @@ export default function TagFilter({$target, initialState={}, onClick}){
         onClick({tags:selectedTags});
       }
   })
+  
   this.render()
 }

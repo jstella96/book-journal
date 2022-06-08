@@ -4,11 +4,9 @@ export default function Search({$target, initialState={}, onChange}){
   this.$element = document.createElement('div'); 
   this.$element.className = "search"
   
-
   this.state = initialState
-  $target.appendChild(this.$element)
-  //this.$element.setAttribute('autofocus','autofocus');
 
+  $target.appendChild(this.$element)
 
   this.setState = (nextState) => {
     this.state = nextState
@@ -17,16 +15,16 @@ export default function Search({$target, initialState={}, onChange}){
   
   this.render = () => {
     this.$element.innerHTML = `
-        <span class="search__icon">
-          <img src="src/assets/images/search.png" >
-        </span>
-        <form>
-          <input class="search__input" type="text" value="${this.state}">
-        </form>
+      <span class="search__icon">
+        <img src="src/assets/images/search.png" >
+      </span>
+      <form>
+        <input class="search__input" type="text" value="${this.state}">
+      </form>
     `
   }
-  let debounce = null;
 
+  let debounce = null;
   this.$element.addEventListener('keyup', (e) => {
     const actionIgnoreKeys = ['Enter', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight']
     if(!actionIgnoreKeys.includes(e.key)){
@@ -41,5 +39,6 @@ export default function Search({$target, initialState={}, onChange}){
   this.$element.addEventListener('submit',(e)=>{
     e.preventDefault();
   })
+  
   this.render()
 }

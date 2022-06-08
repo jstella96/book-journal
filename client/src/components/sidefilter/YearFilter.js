@@ -2,8 +2,7 @@
 export default function YearFilter({$target, initialState={}, onClick}){
   
   this.$element = document.createElement('div'); 
-  this.$element.className = "side-filter__year"
-  
+  this.$element.className = "side-filter__year" 
 
   this.state = {
     years: initialState.years ? initialState.years : [],
