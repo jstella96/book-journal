@@ -131,7 +131,7 @@ export default function Main({$target}){
       return items.filter( item => year.name === 'ALL' || new Date(item.date).getFullYear() === parseInt(year.name) )
     },
     'tags' : (items, tags) => {
-      return items.filter( item => tags.length === 0  || item.tags.filter( tag => tags.includes(tag)).length > 0 )
+      return items.filter( item => tags.length === 0  || item.tags.filter( tag => tags.includes(tag)).length == tags.length)
     },
     'sort': (items, sortBy) => {
       const value = sortBy.value
