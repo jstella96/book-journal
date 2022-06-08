@@ -31,8 +31,8 @@ export default function BookQuote({$target, initialState = {}, onChange}){
             ${quotes.map((quote,index) => 
             `
             <div class="book-quote__content">
-              <blockquote data-idx="${index}" spellcheck="false" contenteditable="true">
-                <P class="book-quote__text">${quote.content ? quote.content : ''}</P>
+              <blockquote>
+                <p data-idx="${index}" class="book-quote__text"  contenteditable="true" spellcheck="false">${quote.content ? quote.content : ''}</p>
               </blockquote>
               <span>&mdash; <cite data-idx="${index}" contenteditable="true" spellcheck="false"  placeholder="page" class="book-quote__page">${quote.page ? quote.page : '' }</cite></span>
               <div class="book-quote__delete" data-idx="${index}" >삭제<img src="src/assets/images/trash-can-gray.png" /></div>
@@ -44,7 +44,6 @@ export default function BookQuote({$target, initialState = {}, onChange}){
     `
   }
   
-  
   this.$element.addEventListener('click',(e)=>{
 
     const $plusButton = e.target.closest('.book-quote__button')
@@ -55,15 +54,16 @@ export default function BookQuote({$target, initialState = {}, onChange}){
 
     const $delButton = e.target.closest('.book-quote__delete')
     if($delButton){
-      const {idx} = $delButton
+      const {idx} = $delButton.dataset 
       const quotes = [ ...this.state.quotes]
       quotes.splice(idx, 1);
       this.setState({quotes:quotes})
+      onChange({quotes: this.state.quotes})
     }
   })
 
   this.$element.addEventListener('keyup', e => {
-    const $text = e.target.querySelector('p')
+    const $text = e.target.closest(".book-quote__text")
     if($text){
       const {idx} = e.target.dataset 
       this.state.quotes[idx].content=$text.innerHTML
