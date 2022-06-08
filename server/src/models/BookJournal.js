@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-const QuoteShema = new mongoose.Schema({  content: String,  page: String  });
+const QuoteShema = new mongoose.Schema({  content:{ type: String, default:"" },  page: { type: String, default:"" } });
 
 const BookJournalSchema = new mongoose.Schema(
   {
@@ -10,35 +10,48 @@ const BookJournalSchema = new mongoose.Schema(
       required: true,
     },
     imagePath: {
-      type: String
+      type: String,
+      default: ''
     },
     title: {
-      type: String
+      type: String,
+      default: ''
     },
     date:{ 
       type: Date, default: Date.now 
     },
     author:{
-      type: String 
+      type: String,
+      default: ''
     },
     publisher : {
-      type: String 
+      type: String,
+      default: '' 
     },
     review: {
       type: String 
     },
     likeCount : {
-      type: Number
+      type: Number,
+      default: 0
     },
+    //type: Object, //{USER_ID1 : true, USER_ID2 : true }
     likeUsers : { 
-      type: Object, //{USER_ID1 : true, USER_ID2 : true }
-      default: {}
+      type: [String],
+      default: []
     },
     quotes: {
       type: [QuoteShema],
       default: []
+    },
+    tags: {
+      type: [ mongoose.Schema.Types.ObjectId ],
+      default: []
+    },
+    genre: {
+      type: mongoose.Schema.Types.ObjectId
     }
-  },
+  },  
   { timestamps: true }, 
 );
 const BookJournalModel = mongoose.model("BookJournal", BookJournalSchema);

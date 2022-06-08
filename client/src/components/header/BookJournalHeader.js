@@ -1,14 +1,12 @@
+import {routeChange} from '../../lib/route/route.js'
 
-export default function BookJournalHearder({$target, initialState={}, onEvent}){
-  //[필수]
+export default function BookJournalHearder({$target, initialState, onSave, onDelete}){
+
   this.$element = document.createElement('div'); 
   this.$element.className = "header book-journal-header"
   
-  /* 이름 종속되게 짓지 말기 */
-  this.state = {
+  this.state = {}
 
-  }
-  //this.state = initialState
   $target.appendChild(this.$element)
 
   this.setState = (nextState) => {
@@ -21,18 +19,33 @@ export default function BookJournalHearder({$target, initialState={}, onEvent}){
   
   this.render = () => {
     this.$element.innerHTML = `
-  
-        <div class="book-journal-header__back">
+        <h1 class="book-journal-header__back">
           < BACK
-        </div>
-        <button class="header__button"> 책검색</button>
+        </h1>
+        <button class="header__button header__save"> 저장 </button>
+        <button class="header__button header__delete"> 삭제 </button>
         <label class="switch-button"> 
           <input type="checkbox"/> 
           <span class="switch-button__onoff"></span> 
         </label>
-      
     `
   }
+
+  this.$element.addEventListener('click', e => {
+    const $save = e.target.closest('.header__save')
+    if($save){
+      onSave()
+    }
+    const $back = e.target.closest('.book-journal-header__back')
+    if($back){
+      routeChange('/')
+    }
+    const $delete = e.target.closest('.header__delete')
+    if($delete){
+      onDelete()
+    }
+  })
+
   
   this.render()
 }

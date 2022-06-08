@@ -1,4 +1,25 @@
-/*공통*/
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Displacdcdcdy:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Noto+Sans+KR&family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap');/*공통*/
+
+/*color-set*/
+:root {
+  --color-wild-sand:#F4F4F4;
+  --color-black:  #000000;
+  --color-tundora: #444444;
+  --color-alto:  #dddddd;
+  --color-silver-chalice: #aaaaaa;
+  --color-gray: #8A8A8A;
+  --color-silver : #cdcdcd; /*placeholder*/
+  --element-back-color: red;
+  --color-persian-pink:#F87BCD;
+  --color-soft-peach: #efe6ea;
+  --color-cararra: #ebeae0;
+  --color-mercury: #e9e9e9;
+}
+
+* {
+  font-family: "georgia",'Noto Sans Display','Noto Serif KR', serif;
+}
+
 ul {
   padding: 0;
   margin: 0;
@@ -9,17 +30,57 @@ li {
   display: inline-block;
 }
 
+select {
+  width: 100px;
+  padding: .2em .2em; 
+  font-family: inherit;
+  font-size: inherit;
+  border:1px solid  inherit;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  background-color: inherit;
+  color: inherit;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance : none;
+}
+
+select::-ms-expand { 
+  display: none;
+}
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
 html, body {
-  background-color: #F4F4F4;
+  background-color: var(--color-wild-sand);
   width: 90%;
   height: 100%;
   margin: 0 5%;
-  color: #8A8A8A
+  color: var(--color-gray);
 }
+
+[contenteditable="true"]:focus {
+  outline: none;
+}
+[contenteditable=true]:empty:not(:focus):before{
+  content: attr(placeholder);
+  pointer-events: none;
+  color: var(--color-silver);
+}
+
+.inline{
+  display: inline;
+}
+
 /* header*/
 .header {
-  width: 80%;
-  margin: 0 10%;
+  width: 100%;
+  margin: 0 0;
   padding-top: 20px;
   position: relative;
 }
@@ -27,14 +88,18 @@ html, body {
   border: none ;
   width: 55px;
   height: 30px;
-  background-color:  #e8e7e0;
+  background-color: var(--color-mercury);
+  color: var(--color-gray);
   border-radius: 10px;
   position: absolute;
   right: 70px;
   font-weight: 600;
-  color: #555;
   cursor:pointer;
 }
+.header__save{
+  right: 130px;
+}
+
 /* switch-button 다크/라이트 모드 */
 .switch-button { 
   right: 0px;
@@ -55,8 +120,8 @@ html, body {
   right: 0;
   bottom: 0;
   border-radius:20px;
-  background-color: #ccc;
-  box-shadow: inset 1px 5px 1px #999;
+  background-color: #FEED30;
+  box-shadow: inset 1px 5px 1px #E3AE56; 
   -webkit-transition: .4s;
   transition: .4s;
 } .switch-button__onoff:before { 
@@ -66,37 +131,49 @@ html, body {
   width: 22px; left: 4px; bottom: 4px; background-color: #fff; -webkit-transition: .5s;
   transition: .4s; border-radius:20px; 
 } .switch-button input:checked + .switch-button__onoff {
-  background-color: #FEED30;
-  box-shadow: inset 1px 5px 1px #E3AE56; 
+  background-color: var(--color-alto);
+  box-shadow: inset 1px 5px 1px  var(--color-silver-chalice);
 } .switch-button input:checked + .switch-button__onoff:before { 
   -webkit-transform: translateX(26px); 
   -ms-transform: translateX(26px);
   transform: translateX(26px); 
 }
 
-
-
 /*main-page*/
 
-/* main header*/
+/* main header  color: var(--color-gray);*/
 .main-header__title{
   display: inline;
-  color: #8A8A8A;
+  cursor: pointer;
+  color: var(--color-tundora);
 }
 
 .grid-container {
   display: grid;
   grid-template-areas:
-  "search side-filter"
+  "search search"
   "book-journal-list side-filter";
   grid-template-columns: 1fr 350px;
-  grid-template-rows: 50px 1fr;
-  max-width: 1200px;
+  grid-template-rows: 80px 1fr;
+  /*max-width: 1600px;*/
   margin: 0 auto;
 }
+/* mobile */
+@media screen and (max-width: 767px) {          
+  .grid-container {               
+    display: grid;      
+    grid-template-areas: "search""book-journal-list";     
+    grid-template-columns: 1fr;           
+  }      
+  .side-filter { 
+    display: none;
+  }      
+ }
+
+
 /*search*/
 .search {
-  margin-top: 10px;
+  margin-top: 20px;
   grid-area: search;
   justify-content: center;
   align-items: center;
@@ -105,7 +182,7 @@ html, body {
   height: 40px;
   left: 0%;
   top: 0%;
-  background: #F4F4F4;
+  background: var(--color-wild-sand);
   box-sizing: border-box;
   box-shadow: inset -6px -6px 15px rgba(255, 255, 255, 0.78), inset 6px 6px 16px rgba(0, 0, 0, 0.15);
   border-radius: 54px;
@@ -129,24 +206,25 @@ html, body {
   background: transparent;
   font-size: 20px;
   height: 80%;
-  color: #8A8A8A;
+  color: var(--color-gray);
 }
 
 /* book-journal-list css */
 .book-journal-list {
-  margin-top: 20px;
+
   grid-area: book-journal-list;
   position: relative;
   height: 500px;
   width: 100%;
 }
 .book-journal-list__card {
+  cursor: pointer;
   margin-bottom: 15px;
   box-sizing: border-box;
   position: relative;
   height: 150px;
   width: 90%;
-  background: #F4F4F4;
+  background: var(--color-wild-sand);
   box-shadow: -6px -6px 15px rgba(255, 255, 255, 0.78), 6px 6px 16px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
 }
@@ -154,31 +232,41 @@ html, body {
   position: absolute;
   top: 5px;
   right: 15px;
-  color: #C4C4C4;
+  color: var(--color-silver);
 }
 .book-journal-list__img{
   position: absolute;
   top: 50%;
   transform: translate( 0 ,-50%);
-  left: 3%;
-  width: 85px;
-  aspect-ratio: 1 / 1.5;
+  left: 20px;
+  width: 100px;
+  aspect-ratio: 1 / 1.3;
 }
 .book-journal-list__content{
   position: absolute;
-  top: 5px;
+  width: 80%;
+  height: 100%;
   left: 130px;
 } 
 .book-journal-list__title{
-  color: #8A8A8A;
-} 
+  color: var(--color-gray);
+}
+.book-journal-list__title--matched{
+  color: var(--color-tundora);
+}
 .book-journal-list__review{
   font-size: 16px;
-  color: #C4C4C4;
+  color: var(--color-silver);
+  width: 70%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;  /* 말줄임 적용 */
 }
 .book-journal-list__tag{
+  position: absolute;
   font-size: 12px;
-  color: #8A8A8A;
+  color: var(--color-gray);
+  bottom: 10px;
 } 
 /*클래스 분리 필요, 원형은 like-button 으로*/
 /*.like-button{}*/
@@ -190,7 +278,7 @@ html, body {
   bottom: 15px;
   width: 85px;
   height: 85px;
-  background: #F4F4F4;
+  background: var(--color-wild-sand);
   box-shadow: -6px -6px 15px rgba(255, 255, 255, 0.78), 6px 6px 16px rgba(0, 0, 0, 0.15);
   border-radius: 66px;
   display: block;
@@ -199,36 +287,38 @@ html, body {
 .book-journal-list__like img{
   margin-top: 20px;
   width: 30%;
+
   display: inline-block;
 }
 .book-journal-list__like span{
   width: 30%;
   display: inline-block;
-  color: #F87BCD
+  color:  var(--color-persian-pink)
 }
 
 /*side-filter*/
 .side-filter {
+  font-size: 15px;
   grid-area: side-filter;
-  background-color: yellowgreen;
   min-height:200px;
   position: relative;
   padding-left: 20px;
   box-sizing: border-box;
   position: relative;
-  background: #F4F4F4;
+  background: var(--color-wild-sand);
   box-shadow: -6px -6px 15px rgba(255, 255, 255, 0.78), 6px 6px 16px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
 }
 
 .side-filter__button{
   cursor: pointer;
-  color: #8A8A8A;
+  color: var(--color-gray);
   height: 35px;
   position: relative;
-  background: #F4F4F4;
+  background: var(--color-wild-sand);
   box-shadow: -6px -6px 15px rgba(255, 255, 255, 0.78), 6px 6px 16px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
+  margin-bottom: 2px;
 }
 .side-filter__button span{
   top: 50%;
@@ -248,13 +338,13 @@ html, body {
 }
 
 .side-filter__button--selected{
-  background-color: #ddd;
-  box-shadow: inset 1px 3px 1px #aaa;
+  background-color:  var(--color-alto);
+  box-shadow: inset 1px 3px 1px  var(--color-silver-chalice);
 }
 
 .side-filter__genre .side-filter__button{
   width: 40%;
-  margin-right: 5%;
+  margin-right: 2px;
 }
 
 .side-filter__year .side-filter__button{
@@ -269,24 +359,37 @@ html, body {
   padding-bottom: 30px;
 }
 
-.tag {
-  background: #4FD0EC;
-  box-shadow: inset -2px -2px 4px rgba(255, 255, 255, 0.31), inset 2px 1px 16px rgba(0, 0, 0, 0.15);
-  border-radius: 10px;
-  color: #FFFFFF;
-  text-align: center;
-  font-weight: 600;
-  font-size: 14px;
-  padding: 3px 7px ;
+.side-filter__tag .side-filter__button{
+  display: inline-block;
+  padding: 4px 8px;
+  height:20px;
 }
 
-
-
+.tag {
+  cursor: pointer;
+  color: var(--color-gray);
+  height: 35px;
+  position: relative;
+  background: var(--color-wild-sand);
+  box-shadow: -6px -6px 15px rgba(255, 255, 255, 0.78), 6px 6px 16px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  display: inline-block;
+  padding: 4px 8px;
+  font-size: 15px;
+  height:20px;
+}.tag span{
+  top: 50%;
+  transform: translate( 0 ,-50%);
+}.tag--selected{
+  background-color:  var(--color-alto);
+  box-shadow: inset 1px 3px 1px  var(--color-silver-chalice);
+}
 /* book journal page*/
 .book-journal-header__back{
+  color: var(--color-tundora);
   display: inline;
-  font-size: 25px;
   font-weight: 600;
+  cursor: pointer;
 }
 
 /* book journal detail*/
@@ -301,74 +404,94 @@ html, body {
   position: absolute;
   top: 50%;
   transform: translate( 0 ,-50%);
-  left: 3%;
-  width: 85px;
-  aspect-ratio: 1 / 1.5;
+  width: 100px;
+  aspect-ratio: 1 / 1.3;
 }
+.book-detail__text{
+  color: var(--color-gray);
+} 
 .book-detail__title{
-  margin-bottom: 10px;
+  margin: 11px 0px 6px 0px;
+  height: 40px;
 } 
 .book-detail__content{
   position: absolute;
-  left: 140px;
+  left: 110px;
 } 
-.book-detail__text{
-  font-size: 14px;
-  color: #8A8A8A;
-} 
-.book-detail__tag{
-  margin-top: 10px;
-  font-size: 12px;
-  color: #8A8A8A;
-} 
-
 /*공통*/
 .long-card {
   box-sizing: border-box;
-  background: #F4F4F4;
+  background: var(--color-wild-sand);
   box-shadow: -6px -6px 15px rgba(255, 255, 255, 0.78), 6px 6px 16px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
 }
 /*Review*/
 .book-review {
   width: 100%;
-  padding: 10px;
+
   margin-bottom: 20px;
 }
 .book-review__content {
   width: 100%;
-  min-height: 100px;
+  min-height: 150px;
+  padding: 10px 20px;
 }
 /*Quote*/
 .book-quote  {
   width: 100%;
-  padding: 10px;
   margin-bottom: 20px;
 }
 
-.book-quote__content {
+.book-quote__scrap {
   width: 100%;
   min-height: 500px;
-  padding-top: 20px;
   position: relative;
+  padding: 30px 0;
 }
-.book-quote__list {
-  min-height: 150px;
-  width: 80%;
-  background-color: #efe5e8;
+.book-quote__content {
+  margin: auto;
+  position: relative;
+  width: 82%;
   border-radius: 10px;
-  margin-left: 10%;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
+}
+.book-quote__content .book-quote__text {
+  min-height: 150px;
+  background-color:  var(--color-mercury);
+  width: 100%;
+  margin: 0;
+}
+.book-quote__content p {
+  padding: 10px 20px;
+}
+
+.book-quote__content span {
+  display: inline;
+  color: var(--color-silver);
+}
+.book-quote__delete{
+  cursor: pointer;
+  color: var(--color-silver);
+  width: 50px;
+  text-align: center;
+  position: absolute;
+  right: 5px;
+  display: inline;
+}
+.book-quote__delete img{
+  width: 15px;
 }
 .book-quote__button {
+  cursor: pointer;
   right: 30px;
   width: 50px;
   height: 50px;
   box-sizing: border-box;
-  background: #F4F4F4;
+  background: var(--color-wild-sand);
   box-shadow: -6px -6px 15px rgba(255, 255, 255, 0.78), 6px 6px 16px rgba(0, 0, 0, 0.15);
   border-radius: 66px;
   position: absolute;
+  border: none;
 }
 .book-quote__button img{
   width: 50%;

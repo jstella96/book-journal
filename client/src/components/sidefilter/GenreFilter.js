@@ -1,14 +1,14 @@
 
-export default function GenreFilter({$target, initialState={}, onEvent}){
-  //[필수]
+export default function GenreFilter({ $target, initialState = {}, onClick}){
+
   this.$element = document.createElement('div'); 
   this.$element.className = "side-filter__genre"
-  
-  /* 이름 종속되게 짓지 말기 */
-  this.state = {
 
+  this.state = {
+    genres: initialState.genres ? initialState.genres : [],
+    selectedIndex: 0
   }
-  //this.state = initialState
+
   $target.appendChild(this.$element)
 
   this.setState = (nextState) => {
@@ -20,40 +20,29 @@ export default function GenreFilter({$target, initialState={}, onEvent}){
   }
   
   this.render = () => {
+    const {genres,  selectedIndex} = this.state
+    const genreTemplate = genres.map( (genre,index) =>  `
+      <li data-index="${index}" class="side-filter__button ${index ==  selectedIndex ? 'side-filter__button--selected' : ''}">
+        <span class="side-filter__name">${genre.name}</span>
+        <span class="side-filter__count">${genre.count}</span>
+      </li>
+      `
+    ).join('')
     this.$element.innerHTML = `
-    <h3 class="side-filter__title">장르</h3>
-    <ul>
-      <li class="side-filter__button">
-        <span class="side-filter__name">ALL</span>
-        <span class="side-filter__count">32</span>
-      </li>
-      <li class="side-filter__button">
-          <span class="side-filter__name">철학</span>
-          <span class="side-filter__count">32</span>
-      </li>
-      <li class="side-filter__button">
-        <span class="side-filter__name">인문학</span>
-        <span class="side-filter__count">32</span>
-     </li>
-      <li class="side-filter__button">
-        <span class="side-filter__name">소설</span>
-        <span class="side-filter__count">32</span>
-      </li>
-      <li class="side-filter__button">
-        <span class="side-filter__name">경제</span>
-        <span class="side-filter__count">32</span>
-      </li>
-      <li class="side-filter__button">
-        <span class="side-filter__name">과학</span>
-        <span class="side-filter__count">32</span>
-      </li>
-      <li class="side-filter__button">
-        <span class="side-filter__name">에세이</span>
-        <span class="side-filter__count">32</span>
-      </li>
-    </ul>
+      <h3 class="side-filter__title">장르</h3>
+      <ul>${genreTemplate}</ul>
     `
   }
+
+  this.$element.addEventListener('click',(e)=>{
+    const $li = e.target.closest('li')
+      if ($li) {
+        const {index} = $li.dataset
+        this.setState({selectedIndex: index})
+        const {genres, selectedIndex} = this.state
+        onClick({genre : genres[selectedIndex]});
+      }
+  })
   
   this.render()
 }

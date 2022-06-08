@@ -1,14 +1,14 @@
 
-export default function Sort({$target, initialState={}, onEvent}){
-  //[필수]
+export default function Sort({$target, initialState={}, onClick}){
+
   this.$element = document.createElement('div'); 
   this.$element.className = "side-filter__sort"
   
-  /* 이름 종속되게 짓지 말기 */
   this.state = {
-
+    sort: initialState.sort ? initialState.sort : [],
+    selectedIndex: 0
   }
-  //this.state = initialState
+
   $target.appendChild(this.$element)
 
   this.setState = (nextState) => {
@@ -20,20 +20,29 @@ export default function Sort({$target, initialState={}, onEvent}){
   }
   
   this.render = () => {
-    this.$element.innerHTML = `
-   
-    <h3 class="side-filter__title">정렬기준</h3>
-    <ul>
-      <li class="side-filter__button side-filter__button--selected">
-          <span class="side-filter__name">작성날짜</span>
+    const { sort,  selectedIndex} = this.state
+    const sortTemplate = sort.map( (sortBy,index) =>  `
+      <li data-index="${index}" class="side-filter__button ${index ==  selectedIndex ? 'side-filter__button--selected' : ''}">
+        <span class="side-filter__name">${sortBy.name}</span>
       </li>
-      <li class="side-filter__button">
-          <span class="side-filter__name">좋아요</span>
-     </li>
-    </ul>
- 
+      `
+    ).join('')
+    this.$element.innerHTML = `
+      <h3 class="side-filter__title">정렬기준</h3>
+      <ul>${sortTemplate}</ul>
     `
   }
-  
+
+  this.$element.addEventListener('click',(e)=>{
+    const $li = e.target.closest('li')
+    if ($li) {
+      const {index} = $li.dataset
+      this.setState({selectedIndex: index})
+      const {sort, selectedIndex} = this.state
+      onClick({sort: sort[selectedIndex]});
+    }
+  })
+
+
   this.render()
 }

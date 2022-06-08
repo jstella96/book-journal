@@ -1,16 +1,13 @@
 
-
-export default function LikeButton({$target, initialState={}, onEvent}){
-  //[필수]
-  this.$element = document.createElement('div'); 
-  this.$element.className = "book-journal-list__like"
+import {getItem} from "../../utils/localStorage.js"
+export default function LikeButton({$target, initialState}){
   
-  /* 이름 종속되게 짓지 말기 */
+  this.$element = document.createElement('div'); 
+  
   this.state = {
-
+    likeCount: initialState.likeCount ? initialState.likeCount : 0,
+    likeUsers : initialState.likeUsers ? initialState.likeUsers:  []
   }
-  //this.state = initialState
-  $target.appendChild(this.$element)
 
   this.setState = (nextState) => {
     this.state = {
@@ -21,13 +18,32 @@ export default function LikeButton({$target, initialState={}, onEvent}){
   }
   
   this.render = () => {
+    const { likeCount ,likeUsers} = this.state;
+    const userId = getItem("userId")
     this.$element.innerHTML = `
+    <div class="book-journal-list__like">
       <div>
-        <img src="src/assets/images/like.png">
+        <img src="${likeUsers.includes(userId)? 'src/assets/images/like.png' : 'src/assets/images/like-g.png' }">
       </div>
-      <span>36</span>
+      <span>${ likeCount }</span>
+    </div>
     `
+    $target.appendChild(this.$element)
   }
-  
+  this.$element.addEventListener('click',(e)=>{
+    const $item = e.target.closest('.book-journal-list__like')
+    if ($item) {
+      const userId = getItem("userId")
+      let { likeUsers } = this.state
+       if( likeUsers.includes(userId)){
+        likeUsers = likeUsers.filter(item => item !== userId)
+       }else{
+        likeUsers.push(userId)
+       }
+      this.setState({likeUsers:likeUsers, likeCount:likeUsers.length});
+      e.preventDefault();
+      return;
+    }
+  });
   this.render()
 }
