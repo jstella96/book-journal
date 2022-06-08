@@ -1,14 +1,12 @@
 import {getBookJournals, deleteBookJournal, getBookJournal, putBookJournal, updateBookJournal} from "../../lib/api/bookjournal.js"
 import {routeChange} from '../../lib/route/route.js'
 
-export default function MainHeader({$target, initialState={}, onEvent}){
+export default function MainHeader({$target, initialState = {}}){
   
   this.$element = document.createElement('div'); 
   this.$element.className = "header main-header"
   
-  this.state = {
-
-  }
+  this.state = { }
 
   this.setState = (nextState) => {
     this.state = {
@@ -31,8 +29,6 @@ export default function MainHeader({$target, initialState={}, onEvent}){
     `
     $target.appendChild(this.$element)
   }
-  
-
 
   window.addEventListener('click', async (e)  => {
     const $plus = e.target.closest('.plus')
@@ -45,5 +41,6 @@ export default function MainHeader({$target, initialState={}, onEvent}){
       routeChange(`/`)
     }
   })
+
   this.render()
 }

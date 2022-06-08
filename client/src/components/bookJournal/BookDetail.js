@@ -1,13 +1,12 @@
 import {formatDate} from "../../utils/utils.js"
-export default function BookDetail({$target, initialState={}, onChange }){
+export default function BookDetail({$target, initialState = {}, onChange }){
   
   this.$element = document.createElement('div'); 
   this.$element.className = "book-detail"
-  
 
   this.state = {
-    form: { },
-    genres:[]
+    form: initialState.form ? initialState.form : {},
+    genres: initialState.genres ? initialState.genres : [],
   }
 
   $target.appendChild(this.$element)
@@ -36,29 +35,28 @@ export default function BookDetail({$target, initialState={}, onChange }){
             `<option  ${ genre._id == form.genre ? 'selected' : ''} value="${genre._id}">${genre.name}</option>`
           ).join('')}
           </select>
-        </div >
-      
+        </div >  
       </div>
- 
     `
   }
   
   this.$element.addEventListener('keyup', e => {
     const $text = e.target.closest('.book-detail__input')
     if($text){
-      const {model} = e.target.dataset //위에서 저장
+      const {model} = e.target.dataset
       this.state.form[model]=e.target.innerHTML
       onChange(this.state.form)
-      
     }
   })
+
   this.$element.addEventListener('change', e => {
-    const $text = e.target.closest('.book-detail__select')
-    if($text){
-      const {model} = e.target.dataset //위에서 저장
+    const $select = e.target.closest('.book-detail__select')
+    if($select){
+      const {model} = e.target.dataset
       this.state.form[model]=e.target.value
       onChange(this.state.form)
     }
   })
+
   this.render()
 }
