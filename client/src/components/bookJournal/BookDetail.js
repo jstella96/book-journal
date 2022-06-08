@@ -31,7 +31,7 @@ export default function BookDetail({$target, initialState={}, onChange }){
         <div class="book-detail__text">작성날짜: <div class="book-detail__info  book-detail__input inline" data-model="date" placeholder="1990-01-01">${form.date? formatDate(form.date): ''}</div> </div >
         <div class="book-detail__text">장르:  
           <select class="book-detail__info book-detail__select inline"  data-model="genre" >
-          <option value="none">선택</option>
+          <option value="none">(선택)</option>
           ${genres.map((genre)=>
             `<option  ${ genre._id == form.genre ? 'selected' : ''} value="${genre._id}">${genre.name}</option>`
           ).join('')}
