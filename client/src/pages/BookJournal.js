@@ -3,10 +3,9 @@ import BookDetail from "../components/bookJournal/BookDetail.js";
 import BookReview from "../components/bookJournal/BookReview.js";
 import BookQuote from "../components/bookJournal/BookQuote.js";
 import BookTag from "../components/bookJournal/BookTag.js";
-import {getItem,setItem} from "../utils/localStorage.js"
+import {getItem} from "../utils/localStorage.js"
 import {getParameterByName} from "../utils/utils.js"
-import {getUser, deleteGenre, deleteTag, putGenre, putTag} from "../lib/api/user.js"
-import {getBookJournals, deleteBookJournal, getBookJournal, putBookJournal, updateBookJournal} from "../lib/api/bookjournal.js"
+import { deleteBookJournal, getBookJournal, updateBookJournal} from "../lib/api/bookjournal.js"
 import {routeChange} from '../lib/route/route.js'
 
 export default function BookJournal({$target}){
@@ -32,31 +31,30 @@ export default function BookJournal({$target}){
     bookQuote.setState({quotes :this.state.form.quotes})
     this.render()
   }
+
   const onChange = async (nextForm) => {
     this.state.form = {
       ...this.state.form,
       ...nextForm
     }
   }
+
   const onSave = async () => {
     const {id,form} = this.state;
     const res = await updateBookJournal(id,form);
     routeChange('/')
   }
+
   const onDelete= async () => {
     const {id} = this.state;
     const res = await deleteBookJournal(id);
     routeChange('/')
   }
-  new BookJournalHearder({$target, onSave, onDelete})
-  const bookDetail = new BookDetail({$target, initialState:{form:this.state.form}, onChange})
-  const bookTag = new BookTag({$target ,initialState:{selectedId:this.state.form.tags},onChange})
-  const bookReview = new BookReview({$target,initialState:{review:this.state.review},onChange})
-  const bookQuote = new BookQuote({$target,initialState:{quotes:this.state.quotes},onChange})
 
   this.render = () => {
     $target.appendChild($page)
   }
+
   this.init = async () => {
     const user = getItem("user")
     const id = getParameterByName("id")
@@ -65,5 +63,12 @@ export default function BookJournal({$target}){
   }
 
   this.init()
+
+  new BookJournalHearder({$target, onSave, onDelete})
+  const bookDetail = new BookDetail({$target, initialState:{form:this.state.form}, onChange})
+  const bookTag = new BookTag({$target ,initialState:{selectedId:this.state.form.tags},onChange})
+  const bookReview = new BookReview({$target,initialState:{review:this.state.review},onChange})
+  const bookQuote = new BookQuote({$target,initialState:{quotes:this.state.quotes},onChange})
+
   this.render();
 }

@@ -1,10 +1,9 @@
 
-export default function BookTag({$target, initialState={}, onChange}){
+export default function BookTag({$target, initialState = {}, onChange}){
     
     this.$element = document.createElement('div'); 
     this.$element.className = ""
     
-  
     this.state = {
       tags: initialState.tags ? initialState.tags : [],
       selectedIds: initialState.selectedIds ? initialState.selectedIds:[]

@@ -1,11 +1,11 @@
 
-export default function BookReview({$target, initialState={}, onChange}){
+export default function BookReview({$target, initialState = {}, onChange}){
   
   this.$element = document.createElement('div'); 
   this.$element.className = "book-review"
   
   this.state = {
-    review: ""
+    review: initialState.review ? initialState.review : ''
   }
 
   $target.appendChild(this.$element)
@@ -25,6 +25,7 @@ export default function BookReview({$target, initialState={}, onChange}){
       <div class="long-card book-review__content" spellcheck="false" contenteditable="true" >${review ? review : ''}</div>
     `
   }
+
   this.$element.addEventListener('keyup', e => {
     const $text = e.target.closest('.book-review__content')
     if($text){
@@ -32,5 +33,6 @@ export default function BookReview({$target, initialState={}, onChange}){
       onChange({review:review})
     }
   })
+
   this.render()
 }
