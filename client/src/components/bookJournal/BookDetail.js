@@ -57,8 +57,6 @@ export default function BookDetail({$target, initialState={}, onChange }){
     if($text){
       const {model} = e.target.dataset //위에서 저장
       this.state.form[model]=e.target.value
-      console.log(e.target.value)
-      console.log(this.state.form[model])
       onChange(this.state.form)
     }
   })

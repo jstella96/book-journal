@@ -28,7 +28,6 @@ export const getTagName = tagId => {
 }
 
 export const formatDate = date => {
-  console.log(date)
   return  new Date(+new Date(date) + 3240 * 10000).toISOString().split("T")[0];
 }
 

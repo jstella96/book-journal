@@ -52,7 +52,6 @@ export default function BookTag({$target, initialState={}, onChange}){
           }
           this.setState({selectedIds : selectedIds})
           onChange({tags:selectedIds});
-          console.log(selectedIds)
         }
     })
     this.render()

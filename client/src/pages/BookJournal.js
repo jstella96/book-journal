@@ -29,7 +29,7 @@ export default function BookJournal({$target}){
     bookDetail.setState({genres :this.state.genres, form:this.state.form})
     bookTag.setState({tags :this.state.tags, selectedIds: this.state.form.tags})
     bookReview.setState({review :this.state.form.review})
-    bookQuote.setState({tags :this.state.form.quotes})
+    bookQuote.setState({quotes :this.state.form.quotes})
     this.render()
   }
   const onChange = async (nextForm) => {
