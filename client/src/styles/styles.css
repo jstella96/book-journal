@@ -1,5 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Display:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Noto+Sans+KR&family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap');/*공통*/
-/* 버튼,박스등 일부 css에서 중복현상 발생, 추후에도 사용 할 수 있도록 분리작업 모듈 작업 필요 자세한건 이슈 참조 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Displacdcdcdy:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Noto+Sans+KR&family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap');/*공통*/
+
+/*color-set*/
+:root {
+  --color-wild-sand:#F4F4F4;
+  --color-black:  #000000;
+  --color-tundora: #444444;
+  --color-alto:  #dddddd;
+  --color-silver-chalice: #aaaaaa;
+  --color-gray: #8A8A8A;
+  --color-silver : #cdcdcd; /*placeholder*/
+  --element-back-color: red;
+  --color-persian-pink:#F87BCD;
+  --color-soft-peach: #efe5e8;
+  --color-cararra: #e8e7e0;
+}
+
+* {
+  font-family: "georgia",'Noto Sans Display','Noto Serif KR', serif;
+}
+
 ul {
   padding: 0;
   margin: 0;
@@ -9,17 +28,24 @@ li {
   list-style: none;
   display: inline-block;
 }
-/* body{
-  font: 16px "georgia";
-} */
-html, body {
-  background-color: #F4F4F4;
-  width: 90%;
-  height: 100%;
-  margin: 0 5%;
-  color: #8A8A8A;
-  font-family: "georgia",'Noto Sans Display','Noto Serif KR', serif;
-  
+
+select {
+  width: 100px;
+  padding: .2em .2em; 
+  font-family: inherit;
+  border:1px solid  inherit;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  background-color: inherit;
+  color: inherit;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance : none;
+}
+
+select::-ms-expand { 
+  display: none;
 }
 input:focus,
 select:focus,
@@ -27,41 +53,51 @@ textarea:focus,
 button:focus {
     outline: none;
 }
+
+html, body {
+  background-color: var(--color-wild-sand);
+  width: 90%;
+  height: 100%;
+  margin: 0 5%;
+  color: var(--color-gray);
+}
+
 [contenteditable="true"]:focus {
   outline: none;
 }
 [contenteditable=true]:empty:not(:focus):before{
   content: attr(placeholder);
   pointer-events: none;
-  color: #cdcdcd;
+  color: var(--color-silver);
 }
-/*display: block;  For Firefox */
+
 .inline{
   display: inline;
 }
+
 /* header*/
 .header {
   width: 100%;
   margin: 0 0;
   padding-top: 20px;
   position: relative;
-  color: #444;
 }
 .header__button{
   border: none ;
   width: 55px;
   height: 30px;
-  background-color:  #e8e7e0;
+  background-color: var(--color-cararra);
+  color: var(--color-gray);
   border-radius: 10px;
   position: absolute;
   right: 70px;
   font-weight: 600;
-  color: #666;
   cursor:pointer;
 }
 .header__save{
   right: 130px;
 }
+
 /* switch-button 다크/라이트 모드 */
 .switch-button { 
   right: 0px;
@@ -93,37 +129,36 @@ button:focus {
   width: 22px; left: 4px; bottom: 4px; background-color: #fff; -webkit-transition: .5s;
   transition: .4s; border-radius:20px; 
 } .switch-button input:checked + .switch-button__onoff {
-  background-color: #ccc;
-  box-shadow: inset 1px 5px 1px #999;
+  background-color: var(--color-alto);
+  box-shadow: inset 1px 5px 1px  var(--color-silver-chalice);
 } .switch-button input:checked + .switch-button__onoff:before { 
   -webkit-transform: translateX(26px); 
   -ms-transform: translateX(26px);
   transform: translateX(26px); 
 }
 
-
-
 /*main-page*/
 
-/* main header  color: #8A8A8A;*/
+/* main header  color: var(--color-gray);*/
 .main-header__title{
   display: inline;
   cursor: pointer;
+  color: var(--color-tundora);
 }
 
 .grid-container {
   display: grid;
   grid-template-areas:
-  "search side-filter"
+  "search search"
   "book-journal-list side-filter";
   grid-template-columns: 1fr 350px;
-  grid-template-rows: 50px 1fr;
+  grid-template-rows: 80px 1fr;
   /*max-width: 1600px;*/
   margin: 0 auto;
 }
 /*search*/
 .search {
-  margin-top: 10px;
+  margin-top: 20px;
   grid-area: search;
   justify-content: center;
   align-items: center;
@@ -132,7 +167,7 @@ button:focus {
   height: 40px;
   left: 0%;
   top: 0%;
-  background: #F4F4F4;
+  background: var(--color-wild-sand);
   box-sizing: border-box;
   box-shadow: inset -6px -6px 15px rgba(255, 255, 255, 0.78), inset 6px 6px 16px rgba(0, 0, 0, 0.15);
   border-radius: 54px;
@@ -156,12 +191,12 @@ button:focus {
   background: transparent;
   font-size: 20px;
   height: 80%;
-  color: #8A8A8A;
+  color: var(--color-gray);
 }
 
 /* book-journal-list css */
 .book-journal-list {
-  margin-top: 20px;
+
   grid-area: book-journal-list;
   position: relative;
   height: 500px;
@@ -174,7 +209,7 @@ button:focus {
   position: relative;
   height: 150px;
   width: 90%;
-  background: #F4F4F4;
+  background: var(--color-wild-sand);
   box-shadow: -6px -6px 15px rgba(255, 255, 255, 0.78), 6px 6px 16px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
 }
@@ -182,7 +217,7 @@ button:focus {
   position: absolute;
   top: 5px;
   right: 15px;
-  color: #C4C4C4;
+  color: var(--color-silver);
 }
 .book-journal-list__img{
   position: absolute;
@@ -199,14 +234,14 @@ button:focus {
   left: 130px;
 } 
 .book-journal-list__title{
-  color: #8A8A8A;
+  color: var(--color-gray);
 }
 .book-journal-list__title--matched{
-  color: #555;
+  color: var(--color-tundora);
 }
 .book-journal-list__review{
   font-size: 16px;
-  color: #C4C4C4;
+  color: var(--color-silver);
   width: 70%;
   white-space: nowrap;
   overflow: hidden;
@@ -215,7 +250,7 @@ button:focus {
 .book-journal-list__tag{
   position: absolute;
   font-size: 12px;
-  color: #8A8A8A;
+  color: var(--color-gray);
   bottom: 10px;
 } 
 /*클래스 분리 필요, 원형은 like-button 으로*/
@@ -228,7 +263,7 @@ button:focus {
   bottom: 15px;
   width: 85px;
   height: 85px;
-  background: #F4F4F4;
+  background: var(--color-wild-sand);
   box-shadow: -6px -6px 15px rgba(255, 255, 255, 0.78), 6px 6px 16px rgba(0, 0, 0, 0.15);
   border-radius: 66px;
   display: block;
@@ -243,30 +278,32 @@ button:focus {
 .book-journal-list__like span{
   width: 30%;
   display: inline-block;
-  color: #F87BCD
+  color:  var(--color-persian-pink)
 }
 
 /*side-filter*/
 .side-filter {
+  font-size: 15px;
   grid-area: side-filter;
   min-height:200px;
   position: relative;
   padding-left: 20px;
   box-sizing: border-box;
   position: relative;
-  background: #F4F4F4;
+  background: var(--color-wild-sand);
   box-shadow: -6px -6px 15px rgba(255, 255, 255, 0.78), 6px 6px 16px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
 }
 
 .side-filter__button{
   cursor: pointer;
-  color: #8A8A8A;
+  color: var(--color-gray);
   height: 35px;
   position: relative;
-  background: #F4F4F4;
+  background: var(--color-wild-sand);
   box-shadow: -6px -6px 15px rgba(255, 255, 255, 0.78), 6px 6px 16px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
+  margin-bottom: 2px;
 }
 .side-filter__button span{
   top: 50%;
@@ -286,13 +323,13 @@ button:focus {
 }
 
 .side-filter__button--selected{
-  background-color: #ddd;
-  box-shadow: inset 1px 3px 1px #aaa;
+  background-color:  var(--color-alto);
+  box-shadow: inset 1px 3px 1px  var(--color-silver-chalice);
 }
 
 .side-filter__genre .side-filter__button{
   width: 40%;
-  margin-right: 5%;
+  margin-right: 2px;
 }
 
 .side-filter__year .side-filter__button{
@@ -310,31 +347,15 @@ button:focus {
 .side-filter__tag .side-filter__button{
   display: inline-block;
   padding: 4px 8px;
-  font-size: 15px;
   height:20px;
 }
 
-/*tag
-.tag {
-  background: #4FD0EC;
-  box-shadow: inset -2px -2px 4px rgba(255, 255, 255, 0.31), inset 2px 1px 16px rgba(0, 0, 0, 0.15);
-  border-radius: 10px;
-  color: #FFFFFF;
-  text-align: center;
-  font-weight: 600;
-  font-size: 14px;
-  padding: 3px 7px ;
-}
-.tag--selected{
-  background: #3fa6bd;
-}
-*/
 .tag {
   cursor: pointer;
-  color: #8A8A8A;
+  color: var(--color-gray);
   height: 35px;
   position: relative;
-  background: #F4F4F4;
+  background: var(--color-wild-sand);
   box-shadow: -6px -6px 15px rgba(255, 255, 255, 0.78), 6px 6px 16px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
   display: inline-block;
@@ -345,13 +366,13 @@ button:focus {
   top: 50%;
   transform: translate( 0 ,-50%);
 }.tag--selected{
-  background-color: #ddd;
-  box-shadow: inset 1px 3px 1px #aaa;
+  background-color:  var(--color-alto);
+  box-shadow: inset 1px 3px 1px  var(--color-silver-chalice);
 }
 /* book journal page*/
 .book-journal-header__back{
+  color: var(--color-tundora);
   display: inline;
-  font-size: 25px;
   font-weight: 600;
   cursor: pointer;
 }
@@ -371,6 +392,9 @@ button:focus {
   width: 100px;
   aspect-ratio: 1 / 1.3;
 }
+.book-detail__text{
+  color: var(--color-gray);
+} 
 .book-detail__title{
   margin: 11px 0px 6px 0px;
   height: 40px;
@@ -379,20 +403,10 @@ button:focus {
   position: absolute;
   left: 110px;
 } 
-.book-detail__text{
-  font-size: 14px;
-  color: #8A8A8A;
-} 
-.book-detail__tag{
-  margin-top: 10px;
-  font-size: 12px;
-  color: #8A8A8A;
-} 
-
 /*공통*/
 .long-card {
   box-sizing: border-box;
-  background: #F4F4F4;
+  background: var(--color-wild-sand);
   box-shadow: -6px -6px 15px rgba(255, 255, 255, 0.78), 6px 6px 16px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
 }
@@ -429,17 +443,17 @@ button:focus {
 }
 .book-quote__content .book-quote__text {
   min-height: 150px;
-  background-color: #efe5e8;
+  background-color:  var(--color-soft-peach);
   width: 100%;
   margin: 0;
 }
 .book-quote__content span {
   display: inline;
-  color: #cdcdcd;
+  color: var(--color-silver);
 }
 .book-quote__delete{
   cursor: pointer;
-  color: #bababa;
+  color: var(--color-silver);
   width: 50px;
   text-align: center;
   position: absolute;
@@ -455,7 +469,7 @@ button:focus {
   width: 50px;
   height: 50px;
   box-sizing: border-box;
-  background: #F4F4F4;
+  background: var(--color-wild-sand);
   box-shadow: -6px -6px 15px rgba(255, 255, 255, 0.78), 6px 6px 16px rgba(0, 0, 0, 0.15);
   border-radius: 66px;
   position: absolute;
@@ -472,49 +486,3 @@ button:focus {
   margin-top: 50px;
 }
 
-/**/
-/* blockquote {
-  font: 16px "georgia";
-  position: relative;
-background: #f9f9f9;
-}
-
-
-
-.entry-content blockquote p {
-  max-width: 100%;
-  padding: 0;
-  margin: 0 0 15px;
-  font-size: 20px;
-} */
-
-
-/* 
-
-body {
-  background: white;
-  max-width: 1200px;
-  margin: 10vh auto;
-  font: 16px "georgia";
-  line-height: 1.65;
-  color: #333;
-} */
-
-/*select*/
-select {
-
-  width: 100px; /* 원하는 너비설정 */    padding: .2em .2em; /* 여백으로 높이 설정 */    font-family: inherit;  /* 폰트 상속 */
-  border:1px solid #b8b7b7;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  background-color: inherit;
-  color: inherit;
-
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance : none;
-}
-select::-ms-expand { 
-  display: none;
-}

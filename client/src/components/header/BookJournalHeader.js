@@ -19,9 +19,9 @@ export default function BookJournalHearder({$target, initialState, onSave, onDel
   
   this.render = () => {
     this.$element.innerHTML = `
-        <div class="book-journal-header__back">
+        <h1 class="book-journal-header__back">
           < BACK
-        </div>
+        </h1>
         <button class="header__button header__save"> 저장 </button>
         <button class="header__button header__delete"> 삭제 </button>
         <label class="switch-button"> 
