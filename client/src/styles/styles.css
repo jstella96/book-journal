@@ -258,9 +258,14 @@ html, body {
   font-size: 16px;
   color: var(--color-silver);
   width: 70%;
-  white-space: nowrap;
   overflow: hidden;
+  vertical-align:top;
+  display: -webkit-box;
+  word-break:break-all;    
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:1;
   text-overflow: ellipsis;  /* 말줄임 적용 */
+
 }
 .book-journal-list__tag{
   position: absolute;
@@ -461,7 +466,8 @@ html, body {
   width: 100%;
   margin: 0;
 }
-.book-quote__content p {
+.book-quote__content .book-quote__text{
+  min-height: 120px;
   padding: 10px 20px;
 }
 

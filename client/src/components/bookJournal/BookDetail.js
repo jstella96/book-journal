@@ -24,9 +24,9 @@ export default function BookDetail({$target, initialState = {}, onChange }){
     this.$element.innerHTML = `
       <img class="book-detail__cover" src="${form.imagePath ? form.imagePath : 'src/assets/images/bookcover.jpg'}"></img>
       <div class="book-detail__content">
-        <h2 class="book-detail__title book-detail__input" data-model="title" spellcheck="false"  placeholder="제목을 입력해주세요"  contenteditable="true">${form.title}</h2>
-        <div class="book-detail__text">출판사: <div class="book-detail__info  book-detail__input inline" data-model="publisher" placeholder="비어있음" spellcheck="false" contenteditable="true">${form.publisher}</div> </div >
-        <div class="book-detail__text">작가: <div class="book-detail__info   book-detail__input inline"  data-model="author" placeholder="비어있음" spellcheck="false" contenteditable="true">${form.author}</div></div >
+        <h2 class="book-detail__title book-detail__input" data-model="title" spellcheck="false"  placeholder="제목을 입력해주세요"  contenteditable="true">${form.title ? form.title : ''}</h2>
+        <div class="book-detail__text">작가: <div class="book-detail__info   book-detail__input inline"  data-model="author" placeholder="비어있음" spellcheck="false" contenteditable="true">${form.author?form.author:''}</div></div >
+        <div class="book-detail__text">출판사: <div class="book-detail__info  book-detail__input inline" data-model="publisher" placeholder="비어있음" spellcheck="false" contenteditable="true">${form.publisher?form.publisher:''}</div> </div >
         <div class="book-detail__text">작성날짜: <div class="book-detail__info  book-detail__input inline" data-model="date" placeholder="1990-01-01">${form.date? formatDate(form.date): ''}</div> </div >
         <div class="book-detail__text">장르:  
           <select class="book-detail__info book-detail__select inline"  data-model="genre" >
