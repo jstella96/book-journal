@@ -1,4 +1,4 @@
-# book-journal(개발중)
+# book-journal
 
 ## 프로젝트 시작 동기
 
