@@ -14,7 +14,7 @@
 ## Stack
 
 front-end : Vanilla JavaScript  
-back-end: Node.js
+back-end: Node.js  
 db: MongoDB
 
 ## 스크린 샷
